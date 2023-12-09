@@ -29,7 +29,7 @@
                 </ul>
             </div>
             <div class="profile-container">
-                <button class="menu-list-item btn">Log In</button>
+                <button class="menu-list-item btn">Sign Up</button>
                 <img class="profile-picture" src="img/profile.jpg" alt="">
                 <div class="profile-text-container">
                     <span class="profile-text">Profile</span>
@@ -298,6 +298,35 @@
                     <i class="fas fa-chevron-right arrow"></i>
                 </div>
             </div>
+        </div>
+    </div>
+    <div id="signupModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 class="modal-title">Sign Up</h2>
+            <form id="signupForm">
+                <label for="email" class="signup-labels">Email:</label>
+                <input type="email" id="email" name="email" required>
+                <label for="password" class="signup-labels">Password:</label>
+                <input type="password" id="password" name="password" pattern=".{8,}" required title="Password must be at least 8 characters">
+                <label for="confirmPassword" class="signup-labels">Confirm Password:</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" required>
+                <button type="submit">Sign Up</button>
+              </form>
+        </div>
+    </div>
+
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 class="modal-title">Log In</h2>
+            <form id="loginForm">
+                <label for="email" class="signup-labels">Email:</label>
+                <input type="email" id="email" name="email" required>
+                <label for="password" class="signup-labels">Password:</label>
+                <input type="password" id="password" name="password" required>
+                <button type="submit">Log In</button>
+            </form>
         </div>
     </div>
     <script src="app.js"></script>

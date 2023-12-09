@@ -276,6 +276,112 @@
       transform: translateX(-20px);
   }
   
+  .modal {
+    display: none; /* Ne fillim Modal duhet me ket display none, deri sa ne t'ia nderrojme */
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+    background-color: #151515;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+.modal-title {
+    color: white;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#loginForm {
+    margin: 20px auto;
+    max-width: 300px;
+    padding: 20px;
+    background-color: #151515;
+    color: white;
+    border-radius: 10px;
+  }
+  
+  #loginForm label {
+    display: block;
+    margin-bottom: 10px;
+    color: lightgray;
+  }
+  
+  #loginForm input[type="email"],
+  #loginForm input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    border: 1px solid #4dbf00;
+    background-color: #151515;
+    color: white;
+  }
+  
+  #loginForm button[type="submit"] {
+    padding: 10px 20px;
+    background-color: #4dbf00;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  #signupForm input[type="email"],
+#signupForm input[type="password"],
+#signupForm input[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #4dbf00;
+  border-radius: 5px;
+  background-color: #151515;
+  color: white;
+}
+
+#signupForm input[type="submit"] {
+  background-color: #4dbf00;
+  cursor: pointer;
+}
+
+#signupForm input[type="submit"]:hover {
+  background-color: #3a9c00;
+}
+#signupForm button[type="submit"] {
+    padding: 10px 20px;
+    background-color: #4dbf00;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+.signup-labels{
+    color: white;
+}
+
   @media only screen and (max-width: 940px){
       .menu-container{
           display: none;
