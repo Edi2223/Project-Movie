@@ -30,11 +30,13 @@
             </div>
             <div class="profile-container">
                 <button class="menu-list-item btn">Sign Up</button>
-                <img class="profile-picture" src="img/profile.jpg" alt="">
-                <div class="profile-text-container">
-                    <span class="profile-text">Profile</span>
-                    <i class="fas fa-caret-down"></i>
-                </div>
+                <!-- <div id="profile-avatar"> -->
+                    <img class="profile-picture profile-avatar" src="img/profile.jpg" alt="">
+                    <div class="profile-text-container">
+                        <span class="profile-text" id="profile-text">Profile</span>
+                        <!-- <i class="fas fa-caret-down"></i> -->
+                    </div>
+                <!-- </div> -->
                 <div class="toggle">
                     <i class="fas fa-moon toggle-icon"></i>
                     <i class="fas fa-sun toggle-icon"></i>
@@ -159,14 +161,14 @@
                             <button class="movie-list-item-button">Watch</button>
                         </div>
                         <div class="movie-list-item">
-                            <img class="movie-list-item-img" src="img/1.jpg" alt="">
+                            <img class="movie-list-item-img" src="img/1.jpeg" alt="">
                             <span class="movie-list-item-title">Her</span>
                             <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. At
                                 hic fugit similique accusantium.</p>
                             <button class="movie-list-item-button">Watch</button>
                         </div>
                         <div class="movie-list-item">
-                            <img class="movie-list-item-img" src="img/1.jpg" alt="">
+                            <img class="movie-list-item-img" src="img/1.jpeg" alt="">
                             <span class="movie-list-item-title">Her</span>
                             <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. At
                                 hic fugit similique accusantium.</p>
@@ -231,7 +233,7 @@
                             <button class="movie-list-item-button">Watch</button>
                         </div>
                         <div class="movie-list-item">
-                            <img class="movie-list-item-img" src="img/1.jpg" alt="">
+                            <img class="movie-list-item-img" src="img/1.jpeg" alt="">
                             <span class="movie-list-item-title">Her</span>
                             <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. At
                                 hic fugit similique accusantium.</p>
@@ -274,21 +276,21 @@
                             <button class="movie-list-item-button">Watch</button>
                         </div>
                         <div class="movie-list-item">
-                            <img class="movie-list-item-img" src="img/1.jpg" alt="">
+                            <img class="movie-list-item-img" src="img/1.jpeg" alt="">
                             <span class="movie-list-item-title">Her</span>
                             <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. At
                                 hic fugit similique accusantium.</p>
                             <button class="movie-list-item-button">Watch</button>
                         </div>
                         <div class="movie-list-item">
-                            <img class="movie-list-item-img" src="img/1.jpg" alt="">
+                            <img class="movie-list-item-img" src="img/1.jpeg" alt="">
                             <span class="movie-list-item-title">Her</span>
                             <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. At
                                 hic fugit similique accusantium.</p>
                             <button class="movie-list-item-button">Watch</button>
                         </div>
                         <div class="movie-list-item">
-                            <img class="movie-list-item-img" src="img/1.jpg" alt="">
+                            <img class="movie-list-item-img" src="img/1.jpeg" alt="">
                             <span class="movie-list-item-title">Her</span>
                             <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. At
                                 hic fugit similique accusantium.</p>
@@ -306,9 +308,9 @@
             <h2 class="modal-title">Sign Up</h2>
             <form id="signupForm">
                 <label for="email" class="signup-labels">Email:</label>
-                <input type="email" id="email" name="email" required>
+                <input type="email" id="signup-email" name="email" required>
                 <label for="password" class="signup-labels">Password:</label>
-                <input type="password" id="password" name="password" pattern=".{8,}" required title="Password must be at least 8 characters">
+                <input type="password" id="signup-password" name="password" pattern=".{8,}" required title="Password must be at least 8 characters">
                 <label for="confirmPassword" class="signup-labels">Confirm Password:</label>
                 <input type="password" id="confirmPassword" name="confirmPassword" required>
                 <button type="submit">Sign Up</button>
@@ -322,9 +324,9 @@
             <h2 class="modal-title">Log In</h2>
             <form id="loginForm">
                 <label for="email" class="signup-labels">Email:</label>
-                <input type="email" id="email" name="email" required>
+                <input type="email" id="login-email" name="email" required>
                 <label for="password" class="signup-labels">Password:</label>
-                <input type="password" id="password" name="password" required>
+                <input type="password" id="login-password" name="password" required>
                 <button type="submit">Log In</button>
             </form>
         </div>

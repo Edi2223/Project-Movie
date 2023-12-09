@@ -63,6 +63,10 @@
     align-items: center;
     justify-content: flex-end;
   }
+
+  .profile-avatar{
+    display: none;
+  }
   
   .profile-text-container {
     margin: 0 20px;
@@ -377,6 +381,8 @@
     border-radius: 5px;
     cursor: pointer;
   }
+
+  
 
 .signup-labels{
     color: white;

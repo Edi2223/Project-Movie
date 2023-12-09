@@ -1,5 +1,7 @@
 const arrows = document.querySelectorAll(".arrow");
 const movieLists = document.querySelectorAll(".movie-list");
+const profileAvatar = document.getElementsByClassName('profile-avatar');
+
 
 // Merr Modalin ne DOM
 var signupModal = document.getElementById('signupModal');
@@ -9,15 +11,21 @@ var loginModal = document.getElementById('loginModal');
 var btn = document.querySelector('.btn');
 
 // Merr span (X) qe mbyll modalin
-var span = document.getElementsByClassName('close')[0];
+var spanSignup = document.getElementsByClassName('close')[0];
+var spanLogin = document.getElementsByClassName('close')[1];
+
+//  By default User nuk eshte logged in
+let loggedIn = false;
+
+localStorage.setItem('isLoggedIn', loggedIn)
 
 document.getElementById('signupForm').addEventListener('submit', function(event) {
     event.preventDefault();
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
+    const email = document.getElementById('signup-email').value;
+    const password = document.getElementById('signup-password').value;
     const confirmPassword = document.getElementById('confirmPassword').value;
   
-    // Perform regex validation for email and password
+    // Krijojme validim me REGEX
     const emailRegex = /^\S+@\S+\.\S+$/;
     const passwordRegex = /.{8,}/;
   
@@ -36,21 +44,26 @@ document.getElementById('signupForm').addEventListener('submit', function(event)
       return;
     }
   
-    // Save the user in a local variable
+    // Rujm userin e sapo krijuar ne nje variabel
     const user = {
       email: email,
       password: password
     };
 
+    //Rujm variablen e userit ne local storage
     localStorage.setItem('user', JSON.stringify(user));
   
-    alert('User signed up successfully!');
-    modal.style.display = 'none';
-    document.getElementById('email').value = "";
-    document.getElementById('password').value = "";
+    alert('User Data successfully stored in Local Storage.');
+    signupModal.style.display = 'none';
+    loginModal.style.display = 'none';
+    document.getElementById('signup-email').value = "";
+    document.getElementById('signup-password').value = "";
     document.getElementById('confirmPassword').value = "";
+    document.querySelector('.btn').textContent = 'Log In';
 });
 
+
+//  Carousel 
 arrows.forEach((arrow, i) => {
   const itemNumber = movieLists[i].querySelectorAll("img").length;
   let clickCounter = 0;
@@ -67,70 +80,27 @@ arrows.forEach((arrow, i) => {
     }
   });
 
-  console.log(Math.floor(window.innerWidth / 270));
-});
-
-
-document.getElementById('signupForm').addEventListener('submit', function(event) {
-    event.preventDefault();
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
-    const confirmPassword = document.getElementById('confirmPassword').value;
-  
-    // Perform regex validation for email and password
-    const emailRegex = /^\S+@\S+\.\S+$/;
-    const passwordRegex = /.{8,}/;
-  
-    if (!emailRegex.test(email)) {
-      alert('Please enter a valid email address');
-      return;
-    }
-  
-    if (!passwordRegex.test(password)) {
-      alert('Password must be at least 8 characters');
-      return;
-    }
-  
-    if (password !== confirmPassword) {
-      alert('Passwords do not match');
-      return;
-    }
-  
-    // Save the user in a local variable
-    const user = {
-      email: email,
-      password: password
-    };
-  
-    // You can store the user in app state or local storage for later use
-    // Example: localStorage.setItem('user', JSON.stringify(user));
-  
-    alert('User signed up successfully!');
-    document.querySelector('.btn').textContent = 'Log In';
-  });
-
-// Open modal with login form when "Log In" button is clicked
-document.querySelector('.btn').addEventListener('click', function() {
-    loginModal.style.display = 'block'; // Open the modal
-    document.getElementById('email').value = ""; // Clear the email input
-    document.getElementById('password').value = ""; // Clear the password input
-    document.getElementById('confirmPassword').value = ""; // Clear the confirm password input
+//   console.log(Math.floor(window.innerWidth / 270));
 });
 
 document.getElementById('loginForm').addEventListener('submit', function(event) {
     event.preventDefault();
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
+    const email = document.getElementById('login-email').value;
+    const password = document.getElementById('login-password').value;
 
-    // Retrieve user data from local storage
+    // Marrim user data nga localstorage
     const storedUser = JSON.parse(localStorage.getItem('user'));
+    // console.log("user",storedUser)
 
     if (storedUser && storedUser.email === email && storedUser.password === password) {
-        // Show profile avatar
-        document.querySelector('.profile-picture').style.display = 'block';
-        // Hide the "Log In" button
-        document.querySelector('.btn').style.display = 'none';
+        
+        document.querySelector('.profile-avatar').style.display = 'block';
+       
+        document.querySelector('.btn').textContent = 'Logout';
+        document.getElementById('loginModal').style.display = 'none'
+        document.getElementById('profile-text').textContent = storedUser.email;
         alert('Logged in successfully!');
+        localStorage.setItem("isLoggedIn", true)
     } else {
         alert('Invalid email or password');
     }
@@ -155,24 +125,36 @@ btn.onclick = function() {
     if(btn.textContent === "Sign Up"){
         signupModal.style.display = 'block';
         loginModal.style.display = 'none';
-    } else {
-        loginModal.style.display = 'block';
-        signupModal.style.display = 'none';
+    } else if (btn.textContent === "Log In"){
+        loginModal.style.display = 'block'; 
+        document.getElementById('email').value = "";
+        document.getElementById('password').value = "";
+        document.getElementById('confirmPassword').value = "";
+    } else if (btn.textContent === 'Logout'){
+        loggedIn = false;
+        document.querySelector('.profile-avatar').style.display = 'none';
+        document.getElementById('profile-text').textContent = "Profile";
+        localStorage.setItem("isLoggedIn", false)
+        btn.textContent = "Log In";
     }
 }
 
 // Kur user klikon X
-span.onclick = function() {
+spanSignup.onclick = function() {
 
     signupModal.style.display = 'none';
-    loginModal.style.display = 'none';
-
+    
 }
 
+spanLogin.onclick = function() {
+    
+    loginModal.style.display = 'none';
+}
 // Kur user klikon kudo jashte modalit, ai duhet te mbyllet
 window.onclick = function(event) {
-    if (event.target == modal) {
+    if (event.target == signupModal) {
         signupModal.style.display = 'none';
+    }else if(event.target == loginModal){
         loginModal.style.display = 'none';
     }
 }
