@@ -14,6 +14,11 @@
     top: 0;
   }
   
+  a {
+    text-decoration: none;
+    color: white;
+  }
+
   .navbar-container {
     display: flex;
     align-items: center;
@@ -382,7 +387,21 @@
     cursor: pointer;
   }
 
-  
+.wip-content{
+  display: flex;
+  background: #151515;
+  height: 95vh;
+  justify-content: center;
+}
+.wip-content h2, p{
+  margin-top: 20px;
+  color: white;
+}
+
+ .wip-text{
+  display: flex;
+  flex-direction: column;
+ } 
 
 .signup-labels{
     color: white;
