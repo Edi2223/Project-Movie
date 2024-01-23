@@ -24,11 +24,11 @@
             </div>
             <div class="menu-container">
                 <ul class="menu-list">
-                    <li class="menu-list-item active"><a href="index.html">Home</a></li>
-                    <li class="menu-list-item"><a href="wip.html">Movies</a></li>
-                    <li class="menu-list-item"><a href="wip.html">Series</li>
-                    <li class="menu-list-item"><a href="wip.html">Popular</li>
-                    <li class="menu-list-item"><a href="wip.html">Trends</a></li>
+                    <li class="menu-list-item active"><a href="index.php">Home</a></li>
+                    <li class="menu-list-item"><a href="wip.php">Movies</a></li>
+                    <li class="menu-list-item"><a href="wip.php">Series</li>
+                    <li class="menu-list-item"><a href="wip.php">Popular</li>
+                    <li class="menu-list-item"><a href="wip.php">Trends</a></li>
 
                 </ul>
             </div>
