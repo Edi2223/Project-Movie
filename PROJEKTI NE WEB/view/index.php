@@ -1,3 +1,33 @@
+<?php
+    require_once '../models/db.php'; // Include your DB class
+    require_once '../models/user.php'; // Include your User class
+    
+    session_start();
+    // Check if the user is authenticated (logged in)
+    if (isset($_SESSION['user_id']) && isset($_SESSION['user_email'])) {
+        $userEmail = $_SESSION['user_email'];
+        $isLoggedIn = true; // User is logged in
+    } else {
+        $isLoggedIn = false; // User is not logged in
+        $userEmail = "Profile";
+    }
+    
+    if ($isLoggedIn) {
+        // Create a DB instance
+        $db = new DB();
+    
+        // Create a User instance
+        $user = new User($_SESSION['user_id'], $userEmail, '', '', $db);
+    
+        // Function to log out the user using the User class method
+        function logout($user) {
+            $user->logout();
+            header('Location: login.php'); // Redirect to the login page after logging out
+            exit;
+        }
+    }
+?>
+
 <html lang="en">
 
 <head>
@@ -29,11 +59,15 @@
                 </ul>
             </div>
             <div class="profile-container">
-                <button class="menu-list-item btn">Sign Up</button>
+            <?php if ($isLoggedIn): ?>
+                        <button type="submit" name="logout" class="menu-list-item btn" onclick="location.href='logout.php';">Log Out</button>
+                <?php else: ?>
+                    <button class="menu-list-item btn" onclick="location.href='login.php';">Log In</button>
+                <?php endif; ?>
                 <!-- <div id="profile-avatar"> -->
                     <img class="profile-picture profile-avatar" src="img/profile.jpg" alt="">
                     <div class="profile-text-container">
-                        <span class="profile-text" id="profile-text">Profile</span>
+                        <span class="profile-text" id="profile-text"><?php echo $userEmail; ?></span>
                         <!-- <i class="fas fa-caret-down"></i> -->
                     </div>
                 <!-- </div> -->
@@ -302,36 +336,7 @@
             </div>
         </div>
     </div>
-    <div id="signupModal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2 class="modal-title">Sign Up</h2>
-            <form id="signupForm">
-                <label for="email" class="signup-labels">Email:</label>
-                <input type="email" id="signup-email" name="email" required>
-                <label for="password" class="signup-labels">Password:</label>
-                <input type="password" id="signup-password" name="password" pattern=".{8,}" required title="Password must be at least 8 characters">
-                <label for="confirmPassword" class="signup-labels">Confirm Password:</label>
-                <input type="password" id="confirmPassword" name="confirmPassword" required>
-                <button type="submit">Sign Up</button>
-              </form>
-        </div>
-    </div>
-
-    <div id="loginModal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2 class="modal-title">Log In</h2>
-            <p class="modal-title">Please use the email and password you previously stored in local storage</p>
-            <form id="loginForm">
-                <label for="email" class="signup-labels">Email:</label>
-                <input type="email" id="login-email" name="email" required>
-                <label for="password" class="signup-labels">Password:</label>
-                <input type="password" id="login-password" name="password" required>
-                <button type="submit">Log In</button>
-            </form>
-        </div>
-    </div>
+    
     <script src="app.js"></script>
 </body>
 
