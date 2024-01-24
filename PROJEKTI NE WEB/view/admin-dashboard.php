@@ -1,34 +1,36 @@
 <?php
-    require_once '../models/db.php'; // Include your DB class
-    require_once '../models/user.php'; // Include your User class
-    
-    session_start();
-    // Check if the user is authenticated (logged in)
-    if (isset($_SESSION['user_id']) && isset($_SESSION['user_email'])) {
-        $userEmail = $_SESSION['user_email'];
-        $isLoggedIn = true; // User is logged in
-        $role = $_SESSION['user_role'];
-    } else {
-        $isLoggedIn = false; // User is not logged in
-        $userEmail = "Profile";
+
+require_once '../models/db.php'; // Include your DB class
+require_once '../models/user.php'; // Include your User class
+
+session_start();
+// Check if the user is authenticated (logged in)
+if (isset($_SESSION['user_id']) && isset($_SESSION['user_email'])) {
+    $userEmail = $_SESSION['user_email'];
+    $isLoggedIn = true; // User is logged in
+    $role = $_SESSION['user_role'];
+} else {
+    $isLoggedIn = false; // User is not logged in
+    $userEmail = "Profile";
+}
+
+if ($isLoggedIn) {
+    // Create a DB instance
+    $db = new DB();
+
+    // Create a User instance
+    $user = new User($_SESSION['user_id'], $userEmail, '', '', $db);
+
+    // Function to log out the user using the User class method
+    function logout($user) {
+        $user->logout();
+        header('Location: login.php'); // Redirect to the login page after logging out
+        exit;
     }
-    
-    if ($isLoggedIn) {
-        // Create a DB instance
-        $db = new DB();
-    
-        // Create a User instance
-        $user = new User($_SESSION['user_id'], $userEmail, '', '', $db);
-    
-        // Function to log out the user using the User class method
-        function logout($user) {
-            $user->logout();
-            header('Location: login.php'); // Redirect to the login page after logging out
-            exit;
-        }
-    }
+}
 ?>
 
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -57,7 +59,7 @@
                     <li class="menu-list-item"><a href="wip.php">Popular</li>
                     <li class="menu-list-item"><a href="wip.php">Trends</a></li>
                     <?php if ($role == "admin"): ?>
-                        <li class="menu-list-item"><a href="admin-dashboard.php">Admin Dashboard</a></li>
+                        <li class="menu-list-item"><a href="wip.php">Admin Dashboard</a></li>
                     <?php endif; ?>
                 </ul>
             </div>

@@ -1,18 +1,19 @@
 <?php
 require_once '../models/db.php'; // Include your DB class
 require_once '../models/user.php'; // Include your User class
+require_once '../controllers/user/user_controller.php'; // Include the UserController
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    // Create a DB instance
-    $db = new DB();
+    // Create a UserController instance
+    $userController = new UserController();
 
-    // Create a User instance
-    $user = new User(null, $email, $password, '', $db);
+    // Register the user using the UserController
+    $result = $userController->addUser($email, $password, 'user');
 
-    if ($user->register($email, $password)) {
+    if ($result === "User registration successful!") {
         // Redirect to the login page after successful registration
         header('Location: login.php');
         exit;

@@ -31,19 +31,19 @@ class User {
         return $this->role;
     }
 
-    public function register($email, $password) {
-        // Hash the password before storing it in the database
-        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+    // public function register($email, $password) {
+    //     // Hash the password before storing it in the database
+    //     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-        // Insert the user into the database
-        try {
-            $stmt = $this->db->prepare("INSERT INTO users (email, password) VALUES (?, ?)");
-            $stmt->execute([$email, $hashedPassword]);
-            return true; // Registration successful
-        } catch (PDOException $e) {
-            return false; // Registration failed
-        }
-    }
+    //     // Insert the user into the database
+    //     try {
+    //         $stmt = $this->db->prepare("INSERT INTO users (email, password) VALUES (?, ?)");
+    //         $stmt->execute([$email, $hashedPassword]);
+    //         return true; // Registration successful
+    //     } catch (PDOException $e) {
+    //         return false; // Registration failed
+    //     }
+    // }
 
     public function login($email, $password) {
         // Retrieve the user's data by email
@@ -74,8 +74,6 @@ class User {
         // Check if the user is authenticated (logged in)
         return isset($_SESSION['user_id']);
     }
-
-    // You can add more methods here for user-related functionality
 }
 
 ?>

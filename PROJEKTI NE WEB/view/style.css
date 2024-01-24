@@ -50,13 +50,15 @@
     margin-right: 30px;
   }
   .btn{
-    margin-right: 30px;
+    margin-left: 30px;
     color: #4dbf00;
     border-color: #4dbf00;
     padding: 10px;
     background-color: transparent;
     border-radius: 15px;
     cursor: pointer;
+    height: 40px;
+    width: 80px;
   }
   
   .menu-list-item.active {
