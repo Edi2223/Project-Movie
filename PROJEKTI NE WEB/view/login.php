@@ -9,6 +9,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Create a DB instance
     $db = new DB();
 
+    // $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
     // Create a User instance
     $user = new User(null, $email, $password, '', $db);
 

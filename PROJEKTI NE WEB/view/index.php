@@ -3,6 +3,8 @@
     require_once '../models/user.php'; // Include your User class
     
     session_start();
+    $role = "user";
+    $isLoggedIn = false;
     // Check if the user is authenticated (logged in)
     if (isset($_SESSION['user_id']) && isset($_SESSION['user_email'])) {
         $userEmail = $_SESSION['user_email'];
@@ -26,6 +28,10 @@
             header('Location: login.php'); // Redirect to the login page after logging out
             exit;
         }
+    }
+    if(!$isLoggedIn){
+        header('Location: login.php');
+        exit;
     }
 ?>
 

@@ -45,14 +45,47 @@ class MovieController{
             return false; // Movie deletion failed
         }
     }
+
+    public function getMoviesByCategory($category) {
+        $stmt = $this->db->prepare("SELECT * FROM movies WHERE category = ?");
+        $stmt->execute([$category]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function handleRequest() {
+
+        $action = $_POST['action'] ?? $_GET['action'];
+        switch ($action) {
+            case 'create':
+                // Call createMovie() with form data
+                echo "Added";
+                break;
+            case 'update':
+                // Call updateMovie() with form data
+                break;
+            case 'delete':
+                // Call deleteMovie() with form data
+                break;
+            case 'getById':
+                // Call getMovieById() with form data
+                break;
+            case 'getByCategory':
+                // Call getMoviesByCategory() with form data
+                break;
+        }
+    }
 }
+
+
 
 // Usage example:
 $movieController = new movieController();
 
+$movieController->handleRequest();
+
 // Add a new movie
-$result = $movieController->createMovie("title", "desc", "comedy", "imggg", "link");
-echo $result;
+// $result = $movieController->createMovie("title", "desc", "comedy", "imggg", "link");
+// echo $result;
 
 // Get movie data by ID
 // $movieData = $movieController->getMovieById(1);
