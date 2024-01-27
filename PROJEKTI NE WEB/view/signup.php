@@ -1,7 +1,7 @@
 <?php
 require_once '../models/db.php'; // Include your DB class
 require_once '../models/user.php'; // Include your User class
-require_once '../controllers/user/user_controller.php'; // Include the UserController
+require_once '../controllers/user_controller.php'; // Include the UserController
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['email'];

@@ -1,6 +1,6 @@
 <?php
 
-require_once '../controllers/movies/movie_controller.php'; // Include Movie class 
+require_once '../controllers/movie_controller.php'; // Include Movie class 
 require_once '../models/user.php'; // Include User class 
 require_once '../models/db.php'; // Include DB class
 
@@ -46,12 +46,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $movieController = new MovieController();
 
     
+    
+    // Register the movie using the MovieController
+    $result = $movieController->createMovie($title, $description, $category, "",$imdb_link);
 
-    // Register the user using the UserController
-    $result = $movieController->createMovie($title, $description, $category, '',$imbd_link);
-
-    if ($result === "User registration successful!") {
+    if ($result) {
         // Redirect to the login page after successful registration
+        echo "Registration successful";
         exit;
     } else {
         $error = "Registration failed. Please try again.";
@@ -117,7 +118,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div class="admin-panel">
      <div>
     <h2>Add New Movie</h2>
-    <form action="../controllers/movies/movie_controller.php" method="post">
+    <form action="admin-dashboard.php" method="post">
         <input type="hidden" name="action" value="create">
         <input type="text" name="title" placeholder="Title">
         <textarea name="description" placeholder="Description"></textarea>

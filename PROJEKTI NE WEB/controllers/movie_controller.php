@@ -1,5 +1,5 @@
 <?php
-require_once '../../models/db.php'; // Include your DB class
+require_once '../models/db.php';
 require_once '../models/movie.php';
 
 class MovieController{
@@ -12,8 +12,10 @@ class MovieController{
  // Implement methods for CRUD operations on movies
     public function createMovie($title, $description, $category, $img, $imdb_link) {
         try {
-            $stmt = $this->db->prepare("INSERT INTO movies (title, description, category, img, imdb_link) VALUES (?, ?, ?, ?, ?)");
+            $stmt = $this->db->prepare("INSERT INTO movies (title, description, category, img, imbd_link) VALUES (?, ?, ?, ?, ?)");
+            echo $title;
             $stmt->execute([$title, $description, $category, $img, $imdb_link]);
+            header('Location: admin-dashboard.php');
             return true; // Movie creation successful
         } catch (PDOException $e) {
             return false; // Movie creation failed
@@ -91,6 +93,7 @@ class MovieController{
 
 // Usage example:
 $movieController = new movieController();
+
 
 // $movieController->handleRequest();
 
