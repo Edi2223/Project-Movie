@@ -50,18 +50,28 @@ class User {
         $stmt = $this->db->prepare("SELECT * FROM users WHERE email = ?");
         $stmt->execute([$email]);
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        if ($user && password_verify($password, $user['password'])) {
-            // Start a session and store user information
-            session_start();
-            $_SESSION['user_id'] = $user['id'];
-            $_SESSION['user_email'] = $user['email'];
-            $_SESSION['user_role'] = $user['role'];
-            return true; // Login successful
+    
+        if ($user) {
+            // Verify the password
+            if (password_verify($password, $user['password'])) {
+                // Start a session and store user information
+                session_start();
+                $_SESSION['user_id'] = $user['id'];
+                $_SESSION['user_email'] = $user['email'];
+                $_SESSION['user_role'] = $user['role'];
+                return true; // Login successful
+            } else {
+                // Log the mismatch for debugging
+                echo "Password mismatch for user";
+            }
         } else {
-            return false; // Login failed
+            // Log user not found for debugging
+            echo "email is not in db";
         }
+        
+        return false; // Login failed
     }
+    
 
     public function logout() {
         // Destroy the session and log the user out

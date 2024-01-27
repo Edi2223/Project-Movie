@@ -1,6 +1,6 @@
 <?php
 require_once '../../models/db.php'; // Include your DB class
-require_once '../../models/movie.php';
+require_once '../models/movie.php';
 
 class MovieController{
     private $db;
@@ -74,6 +74,17 @@ class MovieController{
                 break;
         }
     }
+
+    public function getAllMovies() {
+        try {
+            $stmt = $this->db->prepare("SELECT * FROM movies");
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            // Handle the exception as needed, such as logging or returning an error message
+            return []; // Return an empty array on failure
+        }
+    }
 }
 
 
@@ -81,7 +92,7 @@ class MovieController{
 // Usage example:
 $movieController = new movieController();
 
-$movieController->handleRequest();
+// $movieController->handleRequest();
 
 // Add a new movie
 // $result = $movieController->createMovie("title", "desc", "comedy", "imggg", "link");

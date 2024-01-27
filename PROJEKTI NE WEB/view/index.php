@@ -3,8 +3,9 @@
     require_once '../models/user.php'; // Include your User class
     
     session_start();
-    $role = "user";
+    $role = "user";     
     $isLoggedIn = false;
+
     // Check if the user is authenticated (logged in)
     if (isset($_SESSION['user_id']) && isset($_SESSION['user_email'])) {
         $userEmail = $_SESSION['user_email'];

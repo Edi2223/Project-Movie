@@ -1,9 +1,15 @@
 <?php
 
-require_once '../models/db.php'; // Include your DB class
-require_once '../models/user.php'; // Include your User class
+require_once '../controllers/movies/movie_controller.php'; // Include Movie class 
+require_once '../models/user.php'; // Include User class 
+require_once '../models/db.php'; // Include DB class
 
 session_start();
+
+$movieController = new MovieController();
+
+// $movie = new Movie();
+$movies = $movieController->getAllMovies();
 // Check if the user is authenticated (logged in)
 if (isset($_SESSION['user_id']) && isset($_SESSION['user_email'])) {
     $userEmail = $_SESSION['user_email'];
@@ -28,6 +34,30 @@ if ($isLoggedIn) {
         exit;
     }
 }
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // $email = $_POST['email'];
+    $title = $_POST['title'];
+    $description = $_POST['description'];
+    $category = $_POST['category'];
+    $imdb_link = $_POST['imdb_link'];
+
+
+    // Create a UserController instance
+    $movieController = new MovieController();
+
+    
+
+    // Register the user using the UserController
+    $result = $movieController->createMovie($title, $description, $category, '',$imbd_link);
+
+    if ($result === "User registration successful!") {
+        // Redirect to the login page after successful registration
+        exit;
+    } else {
+        $error = "Registration failed. Please try again.";
+    }
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -85,7 +115,7 @@ if ($isLoggedIn) {
         </div>
     </div>
     <div class="admin-panel">
-    <div>
+     <div>
     <h2>Add New Movie</h2>
     <form action="../controllers/movies/movie_controller.php" method="post">
         <input type="hidden" name="action" value="create">
@@ -97,7 +127,7 @@ if ($isLoggedIn) {
         <button type="submit">Add Movie</button>
     </form>
     </div>
-
+<!--                 
     <div>
     <h2>Edit Existing Movie</h2>
     <form action="../controllers/movies/movie_controller.php" method="post">
@@ -137,7 +167,23 @@ if ($isLoggedIn) {
         <input type="text" name="category" placeholder="Category">
         <button type="submit">List Movies</button>
     </form>
-    </div>
+    </div> --> 
+
+    <?php if($movies){
+        foreach ($movies as $movie) {
+        // Display each movie
+        echo "<div>";
+        echo "<h2>{$movie['title']}</h2>";
+        echo "<p>{$movie['description']}</p>";
+        echo "<p>Category: {$movie['category']}</p>";
+        // Display additional movie details as needed
+        echo "</div>";
+    }
+} else {
+    echo "No movies found.";
+    } ?>
+
+        
 </div>
     
     <script src="../view/app.js"></script>
