@@ -34,30 +34,65 @@ if ($isLoggedIn) {
         exit;
     }
 }
+
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if(isset($_POST['title'], $_POST['description'], $_POST['category'],$_POST['imdb_link'])){ // e ndaloj errorin "undefined array key in .."
     // $email = $_POST['email'];
     $title = $_POST['title'];
     $description = $_POST['description'];
     $category = $_POST['category'];
     $imdb_link = $_POST['imdb_link'];
 
-
     // Create a UserController instance
     $movieController = new MovieController();
 
-    
-    
     // Register the movie using the MovieController
-    $result = $movieController->createMovie($title, $description, $category, "",$imdb_link);
+    $result = $movieController->createMovie($title, $description, $category, "" ,$imdb_link);
 
     if ($result) {
         // Redirect to the login page after successful registration
         echo "Registration successful";
         exit;
-    } else {
+    }} else {
         $error = "Registration failed. Please try again.";
     }
 }
+
+
+// deletes a movie 
+// if (isset($_POST['delete_movie'])) {
+//     $movieId = $_POST['id'];
+
+//     $result = $movieController->deleteMovie($movieId);
+//     if ($result) {
+//         // Movie deleted successfully
+//         echo "Movie deleted successfully.";
+//         // Redirect or refresh the page if needed
+//     } else {
+//         // Failed to delete movie
+//         echo "Failed to delete movie.";
+//     }
+// }
+
+
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (isset($_POST['delete_movie'])) {
+        $movieId = $_POST['id'];
+        $result = $movieController->deleteMovie($movieId);
+        if ($result) {
+            // Movie deleted successfully
+            echo "Movie deleted successfully.";
+            // Redirect or refresh the page if needed
+        } else {
+            // Failed to delete movie
+            echo "Failed to delete movie.";
+        }
+    }
+}
+
+
 
 ?>
 
@@ -122,7 +157,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <input type="hidden" name="action" value="create">
         <input type="text" name="title" placeholder="Title">
         <textarea name="description" placeholder="Description"></textarea>
-        <input type="text" name="category" placeholder="Category">
+        <input  type="text" name="category" placeholder="Category">
         <input type="text" name="img" placeholder="Image URL">
         <input type="text" name="imdb_link" placeholder="IMDB Link">
         <button type="submit">Add Movie</button>
@@ -170,17 +205,46 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </form>
     </div> --> 
 
+   <?php if (isset($_POST['delete_movie'])) {
+    $movieId = $_POST['id'];
+
+    $result = $movieController->deleteMovie($movieId);
+    if ($result) {
+        // Movie deleted successfully
+        // echo "Movie deleted successfully.";
+
+        // Fetch the updated list of movies from the database
+        $movies = $movieController->getAllMovies();
+    }
+    /* else {
+         Failed to delete movie
+         echo "Failed to delete movie.";
+     }*/
+}
+    
+?>
     <?php if($movies){
         foreach ($movies as $movie) {
-        // Display each movie
+           
+            // Display each movie
         echo "<div>";
         echo "<h2>{$movie['title']}</h2>";
-        echo "<p>{$movie['description']}</p>";
-        echo "<p>Category: {$movie['category']}</p>";
+        echo "<h3>{$movie['description']}</h3>";
+        echo "<h3>Category: {$movie['category']}</h3>";
+        echo "<h3> {$movie['imbd_link']}</h3>";
         // Display additional movie details as needed
         echo "</div>";
+
+        // Form to delete the movie
+        echo "<form action='admin-dashboard.php' method='post'>";
+        echo "<input type='hidden' name='action' value='delete'>"; // Action to identify delete operation
+        echo "<input type='hidden' name='id' value='{$movie['id']}'>"; // Movie ID input field
+       
+        echo "<button type='submit' name='delete_movie'>Delete</button>";
+        echo "</form>";
     }
-} else {
+}
+ else {
     echo "No movies found.";
     } ?>
 

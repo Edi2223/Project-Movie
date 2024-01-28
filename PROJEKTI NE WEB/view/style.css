@@ -1,366 +1,369 @@
 * {
-    margin: 0;
-  }
-  
-  body {
-    font-family: "Roboto", sans-serif;
-  }
-  
-  .navbar {
-    width: 100%;
-    height: 50px;
-    background-color: black;
-    position: sticky;
-    top: 0;
-  }
-  
-  a {
-    text-decoration: none;
-    color: white;
-  }
+  margin: 0;
+}
 
-  .navbar-container {
-    display: flex;
-    align-items: center;
-    padding: 0 50px;
-    height: 100%;
-    color: white;
-    font-family: "Sen", sans-serif;
-  }
-  
-  .logo-container {
-    flex: 1;
-  }
-  
-  .logo {
-    font-size: 30px;
-    color: #4dbf00;
-  }
-  
-  .menu-container {
-    flex: 6;
-  }
-  
-  .menu-list {
-    display: flex;
-    list-style: none;
-  }
-  
-  .menu-list-item {
-    margin-right: 30px;
-  }
-  .btn{
-    margin-left: 30px;
-    color: #4dbf00;
-    border-color: #4dbf00;
-    padding: 10px;
-    background-color: transparent;
-    border-radius: 15px;
-    cursor: pointer;
-    height: 40px;
-    width: 80px;
-  }
-  
-  .menu-list-item.active {
-    font-weight: bold;
-  }
-  .profile-container {
-    flex: 2;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-  }
+body {
+  font-family: "Roboto", sans-serif;
+}
 
-  .profile-avatar{
-    display: none;
-  }
-  
-  .profile-text-container {
-    margin: 0 20px;
-  }
-  
-  .profile-picture {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    object-fit: cover;
-  }
-  
-  .toggle {
-    width: 40px;
-    height: 20px;
-    background-color: white;
-    border-radius: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    position: relative;
-  }
-  
-  .toggle-icon {
-    color: goldenrod;
-  }
-  
-  .toggle-ball {
-    width: 18px;
-    height: 18px;
-    background-color: black;
-    position: absolute;
-    right: 1px;
-    border-radius: 50%;
-    cursor: pointer;
-    transition: 1s ease all;
-  }
-  
-  .sidebar {
-    width: 50px;
-    height: 100%;
-    background-color: black;
-    position: fixed;
-    top: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-top: 60px;
-  }
-  
-  .left-menu-icon {
-    color: white;
-    font-size: 20px;
-    margin-bottom: 40px;
-  }
-  
-  .container {
-    background-color: #151515;
-    min-height: calc(100vh - 50px);
-    color: white;
-  }
-  
-  .content-container {
-    margin-left: 50px;
-  }
-  
-  .featured-content {
-    height: 50vh;
-    padding: 50px;
-  }
-  
-  .featured-title {
-    width: 200px;
-  }
-  
-  .featured-desc {
-    width: 500px;
-    color: lightgray;
-    margin: 30px 0;
-  }
-  
-  .featured-button {
-    background-color: #4dbf00;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 10px;
-    border: none;
-    outline: none;
-    font-weight: bold;
-  }
-  
-  .movie-list-container {
-    padding: 0 20px;
-  }
-  
-  .movie-list-wrapper {
-    position: relative;
-    overflow: hidden;
-  }
-  
-  .movie-list {
-    display: flex;
-    align-items: center;
-    height: 300px;
-    transform: translateX(0);
-    transition: all 1s ease-in-out;
-  }
-  
-  .movie-list-item {
-    margin-right: 30px;
-    position: relative;
-  }
-  
-  .movie-list-item:hover .movie-list-item-img {
-    transform: scale(1.2);
-    margin: 0 30px;
-    opacity: 0.5;
-  }
-  
-  .movie-list-item:hover .movie-list-item-title,
-  .movie-list-item:hover .movie-list-item-desc,
-  .movie-list-item:hover .movie-list-item-button {
-    opacity: 1;
-  }
-  
-  .movie-list-item-img {
-    transition: all 1s ease-in-out;
-    width: 270px;
-    height: 200px;
-    object-fit: cover;
-    border-radius: 20px;
-  }
-  
-  .movie-list-item-title {
-    background-color: #333;
-    padding: 0 10px;
-    font-size: 32px;
-    font-weight: bold;
-    position: absolute;
-    top: 10%;
-    left: 50px;
-    opacity: 0;
-    transition: 1s all ease-in-out;
-  }
-  
-  .movie-list-item-desc {
-    background-color: #333;
-    padding: 10px;
-    font-size: 14px;
-    position: absolute;
-    top: 30%;
-    left: 50px;
-    width: 230px;
-    opacity: 0;
-    transition: 1s all ease-in-out;
-  }
-  
-  .movie-list-item-button {
-    padding: 10px;
-    background-color: #4dbf00;
-    color: white;
-    border-radius: 10px;
-    outline: none;
-    border: none;
-    cursor: pointer;
-    position: absolute;
-    bottom: 20px;
-    left: 50px;
-    opacity: 0;
-    transition: 1s all ease-in-out;
-  }
-  
-  .arrow {
-    font-size: 120px;
-    position: absolute;
-    top: 90px;
-    right: 0;
-    color: lightgray;
-    opacity: 0.5;
-    cursor: pointer;
-  }
-  
-  .container.active {
-    background-color: white;
-  }
-  
-  .movie-list-title.active {
-    color: black;
-  }
-  
-  .navbar-container.active {
-    background-color: white;
-  
-    color: black;
-  }
-  
-  .sidebar.active{
-      background-color: white;
-  }
-  
-  .left-menu-icon.active{
-      color: black;
-  }
-  
-  .toggle.active{
-      background-color: black;
-  }
-  
-  .toggle-ball.active{
-      background-color: white;
-      transform: translateX(-20px);
-  }
-  
-  .modal {
-    display: none; /* Ne fillim Modal duhet me ket display none, deri sa ne t'ia nderrojme */
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.4);
+.navbar {
+  width: 100%;
+  height: 50px;
+  background-color: black;
+  position: sticky;
+  top: 0;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+.navbar-container {
+  display: flex;
+  align-items: center;
+  padding: 0 50px;
+  height: 100%;
+  color: white;
+  font-family: "Sen", sans-serif;
+}
+
+.logo-container {
+  flex: 1;
+}
+
+.logo {
+  font-size: 30px;
+  color: #4dbf00;
+}
+
+.menu-container {
+  flex: 6;
+}
+
+.menu-list {
+  display: flex;
+  list-style: none;
+}
+
+.menu-list-item {
+  margin-right: 30px;
+}
+
+.btn {
+  margin-left: 30px;
+  color: #4dbf00;
+  border-color: #4dbf00;
+  padding: 10px;
+  background-color: transparent;
+  border-radius: 15px;
+  cursor: pointer;
+  height: 40px;
+  width: 80px;
+}
+
+.menu-list-item.active {
+  font-weight: bold;
+}
+
+.profile-container {
+  flex: 2;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.profile-avatar {
+  display: none;
+}
+
+.profile-text-container {
+  margin: 0 20px;
+}
+
+.profile-picture {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.toggle {
+  width: 40px;
+  height: 20px;
+  background-color: white;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  position: relative;
+}
+
+.toggle-icon {
+  color: goldenrod;
+}
+
+.toggle-ball {
+  width: 18px;
+  height: 18px;
+  background-color: black;
+  position: absolute;
+  right: 1px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: 1s ease all;
+}
+
+.sidebar {
+  width: 50px;
+  height: 100%;
+  background-color: black;
+  position: fixed;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 60px;
+}
+
+.left-menu-icon {
+  color: white;
+  font-size: 20px;
+  margin-bottom: 40px;
+}
+
+.container {
+  background-color: #151515;
+  min-height: calc(100vh - 50px);
+  color: white;
+}
+
+.content-container {
+  margin-left: 50px;
+}
+
+.featured-content {
+  height: 50vh;
+  padding: 50px;
+}
+
+.featured-title {
+  width: 200px;
+}
+
+.featured-desc {
+  width: 500px;
+  color: lightgray;
+  margin: 30px 0;
+}
+
+.featured-button {
+  background-color: #4dbf00;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  font-weight: bold;
+}
+
+.movie-list-container {
+  padding: 0 20px;
+}
+
+.movie-list-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+.movie-list {
+  display: flex;
+  align-items: center;
+  height: 300px;
+  transform: translateX(0);
+  transition: all 1s ease-in-out;
+}
+
+.movie-list-item {
+  margin-right: 30px;
+  position: relative;
+}
+
+.movie-list-item:hover .movie-list-item-img {
+  transform: scale(1.2);
+  margin: 0 30px;
+  opacity: 0.5;
+}
+
+.movie-list-item:hover .movie-list-item-title,
+.movie-list-item:hover .movie-list-item-desc,
+.movie-list-item:hover .movie-list-item-button {
+  opacity: 1;
+}
+
+.movie-list-item-img {
+  transition: all 1s ease-in-out;
+  width: 270px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 20px;
+}
+
+.movie-list-item-title {
+  background-color: #333;
+  padding: 0 10px;
+  font-size: 32px;
+  font-weight: bold;
+  position: absolute;
+  top: 10%;
+  left: 50px;
+  opacity: 0;
+  transition: 1s all ease-in-out;
+}
+
+.movie-list-item-desc {
+  background-color: #333;
+  padding: 10px;
+  font-size: 14px;
+  position: absolute;
+  top: 30%;
+  left: 50px;
+  width: 230px;
+  opacity: 0;
+  transition: 1s all ease-in-out;
+}
+
+.movie-list-item-button {
+  padding: 10px;
+  background-color: #4dbf00;
+  color: white;
+  border-radius: 10px;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  bottom: 20px;
+  left: 50px;
+  opacity: 0;
+  transition: 1s all ease-in-out;
+}
+
+.arrow {
+  font-size: 120px;
+  position: absolute;
+  top: 90px;
+  right: 0;
+  color: lightgray;
+  opacity: 0.5;
+  cursor: pointer;
+}
+
+.container.active {
+  background-color: white;
+}
+
+.movie-list-title.active {
+  color: black;
+}
+
+.navbar-container.active {
+  background-color: white;
+
+  color: black;
+}
+
+.sidebar.active {
+  background-color: white;
+}
+
+.left-menu-icon.active {
+  color: black;
+}
+
+.toggle.active {
+  background-color: black;
+}
+
+.toggle-ball.active {
+  background-color: white;
+  transform: translateX(-20px);
+}
+
+.modal {
+  display: none;
+  /* Ne fillim Modal duhet me ket display none, deri sa ne t'ia nderrojme */
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
 }
 
 .modal-content {
-    background-color: #151515;
-    margin: 15% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
+  background-color: #151515;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
 }
 
 .modal-title {
-    color: white;
+  color: white;
 }
 
 .close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
 }
 
 .close:hover,
 .close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 #loginForm {
-    margin: 20px auto;
-    max-width: 300px;
-    padding: 20px;
-    background-color: #151515;
-    color: white;
-    border-radius: 10px;
-  }
-  
-  #loginForm label {
-    display: block;
-    margin-bottom: 10px;
-    color: lightgray;
-  }
-  
-  #loginForm input[type="email"],
-  #loginForm input[type="password"] {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 20px;
-    border-radius: 5px;
-    border: 1px solid #4dbf00;
-    background-color: #151515;
-    color: white;
-  }
-  
-  #loginForm button[type="submit"] {
-    padding: 10px 20px;
-    background-color: #4dbf00;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
+  margin: 20px auto;
+  max-width: 300px;
+  padding: 20px;
+  background-color: #151515;
+  color: white;
+  border-radius: 10px;
+}
 
-  #signupForm input[type="email"],
+#loginForm label {
+  display: block;
+  margin-bottom: 10px;
+  color: lightgray;
+}
+
+#loginForm input[type="email"],
+#loginForm input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  border: 1px solid #4dbf00;
+  background-color: #151515;
+  color: white;
+}
+
+#loginForm button[type="submit"] {
+  padding: 10px 20px;
+  background-color: #4dbf00;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#signupForm input[type="email"],
 #signupForm input[type="password"],
 #signupForm input[type="submit"] {
   width: 100%;
@@ -380,37 +383,40 @@
 #signupForm input[type="submit"]:hover {
   background-color: #3a9c00;
 }
-#signupForm button[type="submit"] {
-    padding: 10px 20px;
-    background-color: #4dbf00;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
 
-.wip-content{
+#signupForm button[type="submit"] {
+  padding: 10px 20px;
+  background-color: #4dbf00;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.wip-content {
   display: flex;
   background: #151515;
   height: 95vh;
   justify-content: center;
 }
-.wip-content h2, p{
+
+.wip-content h2,
+p {
   margin-top: 20px;
   color: white;
 }
 
- .wip-text{
+.wip-text {
   display: flex;
   flex-direction: column;
- } 
-
-.signup-labels{
-    color: white;
 }
 
-  @media only screen and (max-width: 940px){
-      .menu-container{
-          display: none;
-      }
+.signup-labels {
+  color: white;
+}
+
+@media only screen and (max-width: 940px) {
+  .menu-container {
+    display: none;
   }
+}

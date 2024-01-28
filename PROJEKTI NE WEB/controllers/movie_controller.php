@@ -78,14 +78,9 @@ class MovieController{
     }
 
     public function getAllMovies() {
-        try {
-            $stmt = $this->db->prepare("SELECT * FROM movies");
-            $stmt->execute();
-            return $stmt->fetchAll(PDO::FETCH_ASSOC);
-        } catch (PDOException $e) {
-            // Handle the exception as needed, such as logging or returning an error message
-            return []; // Return an empty array on failure
-        }
+        $db = new DB();
+         $movies = $db->query("SELECT * FROM movies");
+        return $movies;
     }
 }
 

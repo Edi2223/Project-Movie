@@ -30,12 +30,19 @@ class DB {
         }
 
         return $this->pdo;
-    }
+     }
 
     public function prepare($sql) {
         return $this->connection()->prepare($sql);
+    
+    
+    }
+    public function query($sql) {
+        $stmt = $this->connection()->query($sql);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 }
+
 
 
 ?>
