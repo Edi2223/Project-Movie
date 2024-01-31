@@ -1,5 +1,6 @@
 * {
   margin: 0;
+  color: black;
 }
 
 body {
@@ -14,9 +15,14 @@ body {
   top: 0;
 }
 
-a {
+.menu-list-item a {
   text-decoration: none;
   color: white;
+}
+
+a {
+  text-decoration: none;
+  font-weight: 700;
 }
 
 .navbar-container {
@@ -393,7 +399,7 @@ a {
   cursor: pointer;
 }
 
-.wip-content {
+/* .wip-content {
   display: flex;
   background: #151515;
   height: 95vh;
@@ -409,11 +415,13 @@ p {
 .wip-text {
   display: flex;
   flex-direction: column;
-}
+} */
 
 .signup-labels {
   color: white;
 }
+
+
 
 @media only screen and (max-width: 940px) {
   .menu-container {
