@@ -1,22 +1,21 @@
 <?php
 
-require_once '../controllers/movie_controller.php'; // Include Movie class 
-require_once '../models/user.php'; // Include User class 
-require_once '../models/db.php'; // Include DB class
+require_once '../controllers/movie_controller.php';
+require_once '../models/user.php';
+require_once '../models/db.php';
 
 session_start();
 
 $movieController = new MovieController();
 
-// $movie = new Movie();
 $movies = $movieController->getAllMovies();
-// Check if the user is authenticated (logged in)
+// Check if the user is logged in
 if (isset($_SESSION['user_id']) && isset($_SESSION['user_email'])) {
     $userEmail = $_SESSION['user_email'];
-    $isLoggedIn = true; // User is logged in
+    $isLoggedIn = true; 
     $role = $_SESSION['user_role'];
 } else {
-    $isLoggedIn = false; // User is not logged in
+    $isLoggedIn = false;
     $userEmail = "Profile";
 }
 
@@ -27,10 +26,10 @@ if ($isLoggedIn) {
     // Create a User instance
     $user = new User($_SESSION['user_id'], $userEmail, '', '', $db);
 
-    // Function to log out the user using the User class method
+    // Function to log out the user
     function logout($user) {
         $user->logout();
-        header('Location: login.php'); // Redirect to the login page after logging out
+        header('Location: login.php');
         exit;
     }
 }
@@ -210,7 +209,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <span class="close" onclick="closeEditModal()">&times;</span>
     <h2 class="white-header-2">Edit Movie</h2>
     <form action="admin-dashboard.php" method="post">
-      <input type="hidden" id="editAction" name="action" value="edit">
+      <input type="hidden" id="editAction" name="action" value="update">
       <input type="hidden" id="editId" name="id" value="">
       <input type="text" id="editTitle" name="title" placeholder="Title">
       <textarea id="editDescription" name="description" placeholder="Description"></textarea>
@@ -245,7 +244,7 @@ function closeAddModal() {
     document.getElementById('addMovieForm').style.display = "none";
 }
 </script>
-    <script src="../view/app.js"></script>
+<script src="app.js"></script>
 </body>
 
 </html>
