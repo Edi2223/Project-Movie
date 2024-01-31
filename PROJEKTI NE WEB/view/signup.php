@@ -25,15 +25,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <!DOCTYPE html>
 <html lang="en">
+<link rel="stylesheet" href="style.css">
 <head>
     <meta charset="UTF-8">
     <title>Sign Up</title>
 </head>
 <body>
-    <h2>Sign Up</h2>
+    <!-- <h2>Sign Up</h2> -->
     <?php if (isset($error)): ?>
         <p style="color: red;"><?php echo $error; ?></p>
     <?php endif; ?>
+   
+   <div class="signup-form">
     <form action="signup.php" method="POST">
         <label for="email">Email:</label>
         <input type="email" id="email" name="email" required><br><br>
@@ -42,5 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <input type="password" id="password" name="password" required><br><br>
         
         <button type="submit">Sign Up</button>
+        </div>
     </form>
-    <p>Already have an account? <a href="login.php">Log in here</p></a></html>
+   <div class="login-button"> <p>Already have an account? <button><a href="login.php">Log in here</p></a></button></div>
+   </html>

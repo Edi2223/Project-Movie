@@ -26,15 +26,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+<link rel="stylesheet" href="style.css">
+
     <meta charset="UTF-8">
     <title>Login</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&family=Sen:wght@400;700;800&display=swap"  rel="stylesheet">
 </head>
 <body>
-    <h2>Login</h2>
+
+    <!-- <h2>Login</h2> -->
     <?php if (isset($error)): ?>
         <p style="color: red;"><?php echo $error; ?></p>
     <?php endif; ?>
+<div class="login-form">
     <form action="login.php" method="POST">
         <label for="email">Email:</label>
         <input type="email" id="email" name="email" required><br><br>
@@ -44,7 +51,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         
         <button type="submit">Login</button>
     </form>
+    </div>
 
-    <p>Do not have an account? <a href="signup.php">Register Now</a></p>
+    <div class="register-button"><p>Do not have an account? <button><a href="signup.php">Register Now</a></button></p></div>
 </body>
 </html>
