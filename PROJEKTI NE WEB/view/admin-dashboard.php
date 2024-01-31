@@ -77,11 +77,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['edit_movie'])) {
         $movieId = $_POST['id'];
-        // Fetch the movie details from the database using the MovieController
         $movie = $movieController->getMovieById($movieId);
-        // Open a modal with the movie details pre-filled in the form
-        // Allow the user to edit the values in the modal
-        // Upon submitting the edited values, use the MovieController to update the movie in the database
     }
 }
 
@@ -144,73 +140,32 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div class="admin-panel">
      <div>
     <h2>Add New Movie</h2>
-    <form action="admin-dashboard.php" method="post" enctype="multipart/form-data">
-        <input type="hidden" name="action" value="create">
-        <input type="text" name="title" placeholder="Title">
-        <textarea name="description" placeholder="Description"></textarea>
-        <input  type="text" name="category" placeholder="Category">
-        <input type="file" name="image" accept="image/*">
-        <input type="text" name="imdb_link" placeholder="IMDB Link">
-        <button type="submit">Add Movie</button>
-    </form>
+    <button id="addMovieButton">Add</button>
+    <div id="addMovieForm" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeAddModal()">&times;</span>
+            <h2 class="white-header-2">Add New Movie</h2>
+            <form action="admin-dashboard.php" method="post" enctype="multipart/form-data">
+                <input type="hidden" name="action" value="create">
+                <input type="text" name="title" placeholder="Title">
+                <textarea name="description" placeholder="Description"></textarea>
+                <input  type="text" name="category" placeholder="Category">
+                <input type="file" name="image" accept="image/*">
+                <input type="text" name="imdb_link" placeholder="IMDB Link">
+                <button type="submit">Add Movie</button>
+            </form>
+        </div>
     </div>
-<!--                 
-    <div>
-    <h2>Edit Existing Movie</h2>
-    <form action="../controllers/movies/movie_controller.php" method="post">
-        <input type="hidden" name="action" value="update">
-        <input type="text" name="id" placeholder="Movie ID">
-        <input type="text" name="title" placeholder="New Title">
-        <textarea name="description" placeholder="New Description"></textarea>
-        <input type="text" name="category" placeholder="New Category">
-        <input type="text" name="img" placeholder="New Image URL">
-        <input type="text" name="imdb_link" placeholder="New IMDB Link">
-        <button type="submit">Update Movie</button>
-    </form> 
     </div>
-
-    <div>
-    <h2>Delete Movie</h2>
-    <form action="../controllers/movies/movie_controller.php" method="post">
-        <input type="hidden" name="action" value="delete">
-        <input type="text" name="id" placeholder="Movie ID">
-        <button type="submit">Delete Movie</button>
-    </form>
-    </div>
-
-    <div>
-    <h2>Get Movie by ID</h2>
-    <form action="../controllers/movies/movie_controller.php" method="get">
-        <input type="hidden" name="action" value="getById">
-        <input type="text" name="id" placeholder="Movie ID">
-        <button type="submit">Get Movie</button>
-    </form>
-    </div>
-
-    <div>
-    <h2>List Movies by Category</h2>
-    <form action="../controllers/movies/movie_controller.php" method="get">
-        <input type="hidden" name="action" value="getByCategory">
-        <input type="text" name="category" placeholder="Category">
-        <button type="submit">List Movies</button>
-    </form>
-    </div> --> 
 
    <?php if (isset($_POST['delete_movie'])) {
     $movieId = $_POST['id'];
 
     $result = $movieController->deleteMovie($movieId);
     if ($result) {
-        // Movie deleted successfully
-        // echo "Movie deleted successfully.";
-
-        // Fetch the updated list of movies from the database
+       
         $movies = $movieController->getAllMovies();
     }
-    /* else {
-         Failed to delete movie
-         echo "Failed to delete movie.";
-     }*/
 }
     
 ?>
@@ -252,8 +207,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
 <div id="editModal" class="modal">
   <div class="modal-content">
-    <span class="close" onclick="closeModal()">&times;</span>
-    <h2>Edit Movie</h2>
+    <span class="close" onclick="closeEditModal()">&times;</span>
+    <h2 class="white-header-2">Edit Movie</h2>
     <form action="admin-dashboard.php" method="post">
       <input type="hidden" id="editAction" name="action" value="edit">
       <input type="hidden" id="editId" name="id" value="">
@@ -277,9 +232,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     document.getElementById('editModal').style.display = "block";
   }
 
-  function closeModal() {
+  function closeEditModal() {
     document.getElementById('editModal').style.display = "none";
   }
+
+  document.getElementById('addMovieButton').addEventListener('click', function() {
+    // Show the "Add New Movie" form in a modal
+    document.getElementById('addMovieForm').style.display = 'block';
+});
+
+function closeAddModal() {
+    document.getElementById('addMovieForm').style.display = "none";
+}
 </script>
     <script src="../view/app.js"></script>
 </body>
