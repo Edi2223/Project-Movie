@@ -64,6 +64,18 @@ class MovieController{
                 break;
             case 'update':
                 // Call updateMovie() with form data
+                $id = $_POST['id'];
+                $title = $_POST['title'];
+                $description = $_POST['description'];
+                $category = $_POST['category'];
+                $img = $_POST['img'];
+                $imdb_link = $_POST['imdb_link'];
+                $result = $this->updateMovie($id, $title, $description, $category, $img, $imdb_link);
+                if ($result) {
+                    echo "Movie updated successfully.";
+                } else {
+                    echo "Failed to update movie.";
+                }
                 break;
             case 'delete':
                 // Call deleteMovie() with form data
