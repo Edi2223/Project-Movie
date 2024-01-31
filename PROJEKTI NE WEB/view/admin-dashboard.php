@@ -144,12 +144,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div class="admin-panel">
      <div>
     <h2>Add New Movie</h2>
-    <form action="admin-dashboard.php" method="post">
+    <form action="admin-dashboard.php" method="post" enctype="multipart/form-data">
         <input type="hidden" name="action" value="create">
         <input type="text" name="title" placeholder="Title">
         <textarea name="description" placeholder="Description"></textarea>
         <input  type="text" name="category" placeholder="Category">
-        <input type="text" name="img" placeholder="Image URL">
+        <input type="file" name="image" accept="image/*">
         <input type="text" name="imdb_link" placeholder="IMDB Link">
         <button type="submit">Add Movie</button>
     </form>
@@ -219,6 +219,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
            
             // Display each movie
         echo "<div>";
+        echo "<img src='{$movie['img']}' alt='Movie Image'>";
         echo "<h2>{$movie['title']}</h2>";
         echo "<p>{$movie['description']}</p>";
         echo "<p>Category: {$movie['category']}</p>";

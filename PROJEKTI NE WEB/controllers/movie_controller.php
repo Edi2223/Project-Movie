@@ -12,14 +12,21 @@ class MovieController{
  // Implement methods for CRUD operations on movies
     public function createMovie($title, $description, $category, $img, $imdb_link) {
         try {
+            $imgPath = $this->uploadImage(); // Call a method to handle image upload
             $stmt = $this->db->prepare("INSERT INTO movies (title, description, category, img, imbd_link) VALUES (?, ?, ?, ?, ?)");
-            echo $title;
-            $stmt->execute([$title, $description, $category, $img, $imdb_link]);
+            $stmt->execute([$title, $description, $category, $imgPath, $imdb_link]); // Use the uploaded image path
             header('Location: admin-dashboard.php');
             return true; // Movie creation successful
         } catch (PDOException $e) {
             return false; // Movie creation failed
         }
+    }
+
+    private function uploadImage() {
+        $targetDir = "../view/img/"; // Specify the target directory for image uploads
+        $targetFile = $targetDir . basename($_FILES["image"]["name"]); // Get the file name
+        move_uploaded_file($_FILES["image"]["tmp_name"], $targetFile); // Move the uploaded file to the target directory
+        return $targetFile; // Return the path of the uploaded image
     }
 
     public function getMovieById($id) {
