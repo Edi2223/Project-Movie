@@ -430,8 +430,75 @@ p {
   }
 
   .navbar-container {
-    font-size: 14.5px;
+    /* font-size: 14.5px; */
   }
+}
+
+
+
+/* Reset default margin and padding */
+
+
+.admin-panel {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(135deg, #3498db, #8e44ad);
+
+}
+
+.admin-panel h2 {
+  margin-bottom: 20px;
+  color: rgb(222, 213, 213);
+  display: flex;
+  justify-content: center;
+}
+
+.attributes {
+  margin-bottom: 20px;
+}
+
+.attributes input,
+.attributes textarea,
+.attributes button {
+  margin-bottom: 10px;
+  padding: 8px;
+  width: 93%;
+  margin-left: 15px;
+
+}
+
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  background-color: #fff;
+  margin: 20% auto;
+  padding: 20px;
+  max-width: 400px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.close {
+  float: right;
+  cursor: pointer;
+}
+
+.close:hover {
+  color: #333;
 }
 
 
@@ -445,69 +512,6 @@ p {
 
 
 
-
-
-
-
-@media (max-width:768px) {
-  .movie-list-wrapper {
-    width: 700px;
-    height: 350px;
-  }
-
-  .movie-list-item-desc {
-    width: 160px;
-  }
-
-  .movie-list-item-title {
-    font-size: 25px;
-  }
-
-  .movie-list-item-button {
-    font-size: 10px;
-  }
-
-  p.movie-list-item-desc {
-    font-size: 11px;
-    /* padding-top: 30px; */
-  }
-
-  p.featured-desc {
-    width: 430px;
-    font-size: 14px;
-  }
-
-  .featured-button {
-    font-size: 11px;
-  }
-
-
-  .navbar-container {
-    font-size: 13px;
-  }
-
-}
-
-@media only screen and (max-width: 412px) {
-  .movie-list-item {
-    margin-right: 2px;
-    /* Further adjust margin for smaller screens */
-  }
-
-  .movie-list-item-img {
-    max-width: 150px;
-    /* Adjust max-width for smaller screens */
-    border-radius: 5px;
-    /* Adjust border radius for smaller screens */
-  }
-
-  .movie-list-item-title,
-  .movie-list-item-desc,
-  .movie-list-item-button {
-    font-size: 10px;
-    /* Adjust font size for smaller screens */
-  }
-}
 
 
 
@@ -525,7 +529,7 @@ p {
   height: 150px;
   margin-top: 5%;
   padding: 20px;
-  background-image: linear-gradient(rgb(147, 16, 16), black);
+  background: linear-gradient(135deg, #3498db, #8e44ad);
   border-radius: 10px;
 }
 
@@ -543,27 +547,19 @@ p {
 .register-button {
   display: flex;
   justify-content: center;
-  font-size: 16px;
 }
 
 
-.register-button p {
-  color: black;
-
-}
 
 .register-button a {
-  /* color: white; */
-  color: black;
   border-radius: 10px;
   text-decoration: none;
-  font-size: 16px;
 
 }
 
 .register-button a:hover {
   color: rgb(54, 54, 249);
-  transition: .1s;
+  transition: .2s;
 }
 
 
@@ -580,7 +576,7 @@ p {
   height: 150px;
   margin-top: 5%;
   padding: 20px;
-  background-image: linear-gradient(rgb(147, 16, 16), black);
+  background: linear-gradient(135deg, #3498db, #8e44ad);
   border-radius: 10px;
 }
 
@@ -614,14 +610,11 @@ p {
   color: black;
   border-radius: 10px;
   text-decoration: none;
-  font-size: 16px;
+  /* font-size: 16px; */
 
 
 }
 
-.login-button button {
-  height: 22px;
-}
 
 .login-button a:hover {
   color: rgb(54, 54, 249);

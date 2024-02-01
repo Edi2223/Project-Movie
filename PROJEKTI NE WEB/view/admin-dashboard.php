@@ -142,18 +142,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
     </div>
     <div class="admin-panel">
-     <div>
-    <h2>Add New Movie</h2>
-    <form action="admin-dashboard.php" method="post" enctype="multipart/form-data">
-        <input type="hidden" name="action" value="create">
-        <input type="text" name="title" placeholder="Title">
-        <textarea name="description" placeholder="Description"></textarea>
-        <input  type="text" name="category" placeholder="Category">
-        <input type="file" name="image" accept="image/*">
-        <input type="text" name="imdb_link" placeholder="IMDB Link">
-        <button type="submit">Add Movie</button>
-    </form>
-    </div>
+        <h2>Add New Movie</h2>
+        <div class="attributes">
+    
+            <form action="admin-dashboard.php" method="post" enctype="multipart/form-data">
+                <input type="hidden" name="action" value="create">
+                <input type="text" name="title" placeholder="Title">
+                <textarea name="description" placeholder="Description"></textarea>
+                <input  type="text" name="category" placeholder="Category">
+                <input type="file" name="image" accept="image/*">
+                <input type="text" name="imdb_link" placeholder="IMDB Link">
+                <button type="submit">Add Movie</button>
+            </form>
+        </div>
 <!--                 
     <div>
     <h2>Edit Existing Movie</h2>
