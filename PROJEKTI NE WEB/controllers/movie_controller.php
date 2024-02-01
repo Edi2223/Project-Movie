@@ -14,7 +14,7 @@ class MovieController{
         try {
             $imgPath = $this->uploadImage(); // Call a method to handle image upload
             $categoryToLower = strtolower($category);
-            $stmt = $this->db->prepare("INSERT INTO movies (title, description, category, img, imbd_link) VALUES (?, ?, ?, ?, ?)");
+            $stmt = $this->db->prepare("INSERT INTO movies (title, description, category, img, imdb_link) VALUES (?, ?, ?, ?, ?)");
             $stmt->execute([$title, $description, $categoryToLower, $imgPath, $imdb_link]); // Use the uploaded image path
             header('Location: admin-dashboard.php');
             return true; // Movie creation successful
@@ -42,7 +42,9 @@ class MovieController{
     public function updateMovie($id, $title, $description, $category, $img, $imdb_link) {
         try {
             $stmt = $this->db->prepare("UPDATE movies SET title = ?, description = ?, category = ?, img = ?, imdb_link = ? WHERE id = ?");
+            // $stmt = $this->db->prepare("INSERT INTO movies (title, description, category, img, imdb_link) VALUES (?, ?, ?, ?, ?)");
             $stmt->execute([$title, $description, $category, $img, $imdb_link, $id]);
+            echo "here";
             return true; // Movie update successful
         } catch (PDOException $e) {
             return false; // Movie update failed
@@ -60,9 +62,9 @@ class MovieController{
     }
 
     public function getMoviesByCategory($category) {
-        $sql = "SELECT * FROM movies WHERE FIND_IN_SET(?, category)";
+        $sql = "SELECT * FROM movies WHERE category LIKE ?";
         $stmt = $this->db->prepare($sql);
-        $stmt->execute([$category]);
+        $stmt->execute(["%$category%"]);
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }

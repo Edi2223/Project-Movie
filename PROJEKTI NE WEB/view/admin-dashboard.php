@@ -36,7 +36,7 @@ if ($isLoggedIn) {
 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if(isset($_POST['title'], $_POST['description'], $_POST['category'],$_POST['imdb_link'])){ // e ndaloj errorin "undefined array key in .."
+    if(isset($_POST['title'], $_POST['description'], $_POST['category'],$_POST['imdb_link']) && isset($_POST['add_movie'])){ // e ndaloj errorin "undefined array key in .."
     // $email = $_POST['email'];
     $title = $_POST['title'];
     $description = $_POST['description'];
@@ -71,10 +71,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (isset($_POST['edit_movie'])) {
-        $movieId = $_POST['id'];
-        $selectedMovie = $movieController->getMovieById($movieId);
-        echo "here";
+    if (isset($_POST['edit_movie_submit'])) {
+        $editedId = $_POST['id'];
+        $editedTitle = $_POST['title'];
+        $editedDescription = $_POST['description'];
+        $editedCategory = $_POST['category'];
+        $editedImg = $_POST['img'];
+        $editedImdb_link = $_POST['imdb_link'];
+
+        $result = $movieController->updateMovie($editedId, $editedTitle, $editedDescription, $editedCategory, $editedImg, $editedImdb_link);
+        
+        if ($result) {
+            echo "Movie updated successfully.";
+        } else {
+            echo "Failed to update movie.";
+        }
     }
 }
 
@@ -149,7 +160,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <input  type="text" name="category" placeholder="Category">
                 <input type="file" name="image" accept="image/*">
                 <input type="text" name="imdb_link" placeholder="IMDB Link">
-                <button type="submit">Add Movie</button>
+                <button type="submit" name="add_movie">Add Movie</button>
             </form>
         </div>
     </div>
@@ -175,7 +186,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         echo "<h2>{$movie['title']}</h2>";
         echo "<p>{$movie['description']}</p>";
         echo "<p>Category: {$movie['category']}</p>";
-        echo "<a href=\"{$movie['imbd_link']}\" target=\"_blank\">IMBD link</a>";
+        echo "<a href=\"{$movie['imdb_link']}\" target=\"_blank\">IMBD link</a>";
         // Display additional movie details as needed
         echo "</div>";
 
@@ -189,9 +200,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $escapedDescription = addslashes($movie['description']);
         // Form to edit the movie
         echo "<form action='admin-dashboard.php' method='post'>";
-        echo "<input type='hidden' name='action' value='edit'>"; // Action to identify edit operation
         echo "<input type='hidden' name='id' value='{$movie['id']}'>"; // Movie ID input field
-        echo "<button  type='button' onclick=\"openModal({$movie['id']}, '{$movie['title']}', '{$escapedDescription}', '{$movie['category']}', '{$movie['img']}', '{$movie['imbd_link']}')\" name=\"edit_movie\">Edit</button>";
+        echo "<button  type='button' onclick=\"openModal({$movie['id']}, '{$movie['title']}', '{$escapedDescription}', '{$movie['category']}', '{$movie['img']}', '{$movie['imdb_link']}')\" name=\"edit_movie\">Edit</button>";
         echo "</form>";
     }
 }
@@ -214,7 +224,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       <input type="text" id="editCategory" name="category" placeholder="Category">
       <input type="text" id="editImg" name="img" placeholder="Image URL">
       <input type="text" id="editImdbLink" name="imdb_link" placeholder="IMDB Link">
-      <button type="submit">Update Movie</button>
+      <button type="submit" name="edit_movie_submit">Update Movie</button>
     </form>
   </div>
 </div>
