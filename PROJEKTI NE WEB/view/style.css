@@ -417,6 +417,10 @@ p {
   flex-direction: column;
 } */
 
+.white-header-2{
+  color: white;
+}
+
 .signup-labels {
   color: white;
 }

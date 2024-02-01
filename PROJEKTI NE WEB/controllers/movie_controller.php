@@ -13,8 +13,9 @@ class MovieController{
     public function createMovie($title, $description, $category, $img, $imdb_link) {
         try {
             $imgPath = $this->uploadImage(); // Call a method to handle image upload
-            $stmt = $this->db->prepare("INSERT INTO movies (title, description, category, img, imbd_link) VALUES (?, ?, ?, ?, ?)");
-            $stmt->execute([$title, $description, $category, $imgPath, $imdb_link]); // Use the uploaded image path
+            $categoryToLower = strtolower($category);
+            $stmt = $this->db->prepare("INSERT INTO movies (title, description, category, img, imdb_link) VALUES (?, ?, ?, ?, ?)");
+            $stmt->execute([$title, $description, $categoryToLower, $imgPath, $imdb_link]); // Use the uploaded image path
             header('Location: admin-dashboard.php');
             return true; // Movie creation successful
         } catch (PDOException $e) {
@@ -25,8 +26,11 @@ class MovieController{
     private function uploadImage() {
         $targetDir = "../view/img/"; // Specify the target directory for image uploads
         $targetFile = $targetDir . basename($_FILES["image"]["name"]); // Get the file name
-        move_uploaded_file($_FILES["image"]["tmp_name"], $targetFile); // Move the uploaded file to the target directory
-        return $targetFile; // Return the path of the uploaded image
+        if (move_uploaded_file($_FILES["image"]["tmp_name"], $targetFile)) { // Move the uploaded file to the target directory
+            return $targetFile; // Return the path of the uploaded image
+        } else {
+            return false; // Return false if the file upload failed
+        }
     }
 
     public function getMovieById($id) {
@@ -38,7 +42,9 @@ class MovieController{
     public function updateMovie($id, $title, $description, $category, $img, $imdb_link) {
         try {
             $stmt = $this->db->prepare("UPDATE movies SET title = ?, description = ?, category = ?, img = ?, imdb_link = ? WHERE id = ?");
+            // $stmt = $this->db->prepare("INSERT INTO movies (title, description, category, img, imdb_link) VALUES (?, ?, ?, ?, ?)");
             $stmt->execute([$title, $description, $category, $img, $imdb_link, $id]);
+            echo "here";
             return true; // Movie update successful
         } catch (PDOException $e) {
             return false; // Movie update failed
@@ -56,9 +62,11 @@ class MovieController{
     }
 
     public function getMoviesByCategory($category) {
-        $stmt = $this->db->prepare("SELECT * FROM movies WHERE category = ?");
-        $stmt->execute([$category]);
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $sql = "SELECT * FROM movies WHERE category LIKE ?";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute(["%$category%"]);
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
     }
 
     public function handleRequest() {
