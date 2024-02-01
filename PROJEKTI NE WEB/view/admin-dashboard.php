@@ -43,9 +43,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $category = $_POST['category'];
     $imdb_link = $_POST['imdb_link'];
 
-    // Create a MovieController instance
-    $movieController = new MovieController();
-
     // Register the movie using the MovieController
     $result = $movieController->createMovie($title, $description, $category, "" ,$imdb_link);
 
@@ -76,7 +73,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['edit_movie'])) {
         $movieId = $_POST['id'];
-        $movie = $movieController->getMovieById($movieId);
+        $selectedMovie = $movieController->getMovieById($movieId);
+        echo "here";
     }
 }
 
@@ -111,7 +109,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <li class="menu-list-item"><a href="wip.php">Popular</li>
                     <li class="menu-list-item"><a href="wip.php">Trends</a></li>
                     <?php if ($role == "admin"): ?>
-                        <li class="menu-list-item"><a href="wip.php">Admin Dashboard</a></li>
+                        <li class="menu-list-item"><a href="admin-dashboard.php">Admin Dashboard</a></li>
                     <?php endif; ?>
                 </ul>
             </div>
@@ -188,12 +186,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
        
         echo "<button type='submit' name='delete_movie'>Delete</button>";
         echo "</form>";
-
+        $escapedDescription = addslashes($movie['description']);
         // Form to edit the movie
         echo "<form action='admin-dashboard.php' method='post'>";
         echo "<input type='hidden' name='action' value='edit'>"; // Action to identify edit operation
         echo "<input type='hidden' name='id' value='{$movie['id']}'>"; // Movie ID input field
-        echo "<button type='button' onclick='openModal(\"{$movie['id']}\", \"{$movie['title']}\", \"{$movie['description']}\", \"{$movie['category']}\", \"{$movie['img']}\", \"{$movie['imbd_link']}\")'>Edit</button>";
+        echo "<button  type='button' onclick=\"openModal({$movie['id']}, '{$movie['title']}', '{$escapedDescription}', '{$movie['category']}', '{$movie['img']}', '{$movie['imbd_link']}')\" name=\"edit_movie\">Edit</button>";
         echo "</form>";
     }
 }
@@ -222,6 +220,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </div>
 <script>
   function openModal(id, title, description, category, img, imdbLink) {
+      console.log("function is working");
     document.getElementById('editId').value = id;
     document.getElementById('editTitle').value = title;
     document.getElementById('editDescription').value = description;
