@@ -13,6 +13,7 @@ body {
   background-color: black;
   position: sticky;
   top: 0;
+  z-index: 89;
 }
 
 .menu-list-item a {
@@ -144,9 +145,9 @@ a {
   color: white;
 }
 
-.content-container {
-  margin-left: 50px;
-}
+/* .content-container { */
+/* margin-left: 50px; */
+/* } */
 
 .featured-content {
   height: 50vh;
@@ -215,8 +216,12 @@ a {
   border-radius: 20px;
 }
 
+.movie-list-title {
+  color: #49aa09;
+}
+
 .movie-list-item-title {
-  background-color: #333;
+  color: white;
   padding: 0 10px;
   font-size: 32px;
   font-weight: bold;
@@ -229,6 +234,7 @@ a {
 
 .movie-list-item-desc {
   background-color: #333;
+  color: white;
   padding: 10px;
   font-size: 14px;
   position: absolute;
@@ -294,6 +300,9 @@ a {
   background-color: white;
   transform: translateX(-20px);
 }
+
+
+
 
 .modal {
   display: none;
@@ -417,26 +426,110 @@ p {
   flex-direction: column;
 } */
 
+.white-header-2 {
+  color: white;
+}
+
 .signup-labels {
   color: white;
 }
 
-
-
-@media only screen and (max-width: 940px) {
-  .menu-container {
-    /* display: none; */
-    width: 80%;
+@media only screen and (max-width: 1040px) {
+  .navbar-container {
+    padding: 0 30px;
+    /* Reduce padding */
   }
 
-  .navbar-container {
-    /* font-size: 14.5px; */
+  .menu-list-item {
+    margin-right: 20px;
+    /* Reduce margin */
   }
 }
 
+/* For screens up to 960px */
+@media only screen and (max-width: 960px) {
+  .menu-list-item {
+    margin-right: 15px;
+    /* Further reduce margin */
+  }
+
+  .profile-container {
+    flex: 3;
+    /* Adjust profile container width */
+  }
+}
+
+@media only screen and (max-width: 920px) {
+  .navbar-container {
+    padding: 0 20px;
+    /* Further reduce padding */
+  }
+
+  .menu-list-item {
+    margin-right: 15px;
+    /* Further reduce margin */
+  }
+}
+
+@media only screen and (max-width: 550px) {
+  .navbar-container {
+    padding: 0 10px;
+    /* Minimal padding */
+  }
+
+  .menu-list-item {
+    margin-right: 10px;
+    /* Minimal margin */
+  }
+
+  .btn {
+    padding: 8px;
+    /* Adjust button padding */
+    width: auto;
+    /* Allow button width to adjust */
+  }
+
+  /* Further reduce font size for links, headings, and spans */
+  a,
+  h1,
+  span {
+    font-size: 12px;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .featured-desc {
+    width: 320px;
+    font-size: 11px;
+  }
+
+  .featured-title {
+    width: 140px;
+    height: 65px;
+  }
+
+  .featured-button {
+    font-size: 8px;
+    padding: 9px;
+    width: 60px;
+  }
+
+  img.featured-title {
+    display: flex;
+    justify-content: center;
 
 
-/* Reset default margin and padding */
+  }
+
+  .movie-list-title {
+    font-size: 18px;
+  }
+
+  .movie-list-item-img {
+    width: 200px;
+  }
+}
+
 
 
 .admin-panel {
@@ -614,7 +707,6 @@ p {
 
 
 }
-
 
 .login-button a:hover {
   color: rgb(54, 54, 249);
