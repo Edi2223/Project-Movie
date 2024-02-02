@@ -103,7 +103,6 @@
                         <img class="profile-picture profile-avatar" src="img/profile.jpg" alt="">
                         <div class="profile-text-container">
                             <span class="profile-text" id="profile-text"><?php echo $userEmail; ?></span>
-                            <i class="fas fa-caret-down"></i>
                         </div>
                         </div>
                      <div class="toggle">
@@ -134,10 +133,9 @@
             <div class="featured-content"
                 style="background: linear-gradient(to bottom, rgba(0,0,0,0), #151515), url('img/f-1.jpg');">
                 <img class="featured-title" src="img/f-t-1.png" alt="">
-                <p class="featured-desc">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iusto illo dolor
-                    deserunt nam assumenda ipsa eligendi dolore, ipsum id fugiat quo enim impedit, laboriosam omnis
-                    minima voluptatibus incidunt. Accusamus, provident.</p>
-                <button class="featured-button">WATCH</button>
+                <p class="featured-desc">With the help of a German bounty-hunter, a freed slave sets out to rescue his wife from a brutal plantation owner in Mississippi.
+</p>
+                <button class="featured-button"><a href="https://www.imdb.com/title/tt1853728/" target="_blank">WATCH</a></button>
             </div>
             <div class="movie-list-container">
             <h1 class="movie-list-title">Action</h1>

@@ -263,20 +263,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </div>
 -->
 <div id="editModal" class="modal">
-  <div class="modal-content">
-    <span class="close" onclick="closeEditModal()">&times;</span>
-    <h2 class="white-header-2">Edit Movie</h2>
-    <form action="admin-dashboard.php" method="post">
-      <input type="hidden" id="editAction" name="action" value="update">
-      <input type="hidden" id="editId" name="id" value="">
-      <input type="text" id="editTitle" name="title" placeholder="Title">
-      <textarea id="editDescription" name="description" placeholder="Description"></textarea>
-      <input type="text" id="editCategory" name="category" placeholder="Category">
-      <input type="text" id="editImg" name="img" placeholder="Image URL">
-      <input type="text" id="editImdbLink" name="imdb_link" placeholder="IMDB Link">
-      <button type="submit" name="edit_movie_submit">Update Movie</button>
-    </form>
-  </div>
+    <div class="attributes">
+
+        <div class="modal-content">
+            <span class="close" onclick="closeEditModal()">&times;</span>
+            <h2 class="white-header-2">Edit Movie</h2>
+            <form action="admin-dashboard.php" method="post">
+                <input type="hidden" id="editAction" name="action" value="update">
+                <input type="hidden" id="editId" name="id" value="">
+                <input type="text" id="editTitle" name="title" placeholder="Title">
+                <textarea id="editDescription" name="description" placeholder="Description"></textarea>
+                <input type="text" id="editCategory" name="category" placeholder="Category">
+                <input type="text" id="editImg" name="img" placeholder="Image URL">
+                <input type="text" id="editImdbLink" name="imdb_link" placeholder="IMDB Link">
+                <button type="submit" name="edit_movie_submit">Update Movie</button>
+            </form>
+        </div>
+    </div>
 </div>
 <script>
   function openModal(id, title, description, category, img, imdbLink) {

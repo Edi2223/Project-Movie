@@ -216,7 +216,7 @@ a {
   border-radius: 20px;
 }
 
-.movie-list-title  {
+.movie-list-title {
   color: #49aa09;
 }
 
@@ -232,9 +232,10 @@ a {
   transition: 1s all ease-in-out;
 }
 
-.movie-list-item-title h2{
-  color:white;
+.movie-list-item-title h2 {
+  color: white;
 }
+
 .movie-list-item-desc {
   background-color: #333;
   color: white;
@@ -247,7 +248,8 @@ a {
   opacity: 0;
   transition: 1s all ease-in-out;
 }
-.movie-list-item-desc p{
+
+.movie-list-item-desc p {
   color: white;
   font-size: 14px;
 
@@ -457,32 +459,34 @@ p {
 .admin-dashboard-content {
   margin: 100px 0 0 0;
   width: 80%;
-  
+
 }
 
-.admin-dashboard-header{
+.admin-dashboard-header {
   display: flex;
   justify-content: space-between;
 }
 
-.admin-dashboard-header-title h2{
-  color: white ;
+.admin-dashboard-header-title h2 {
+  color: white;
 }
 
 .admin-dashboard-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3 columns with equal width */
-  gap: 10px; /* 10px gap between items */
+  grid-template-columns: repeat(3, 1fr);
+  /* 3 columns with equal width */
+  gap: 10px;
+  /* 10px gap between items */
 }
 
 .admin-dashboard-grid-item {
   width: 100%;
   margin: 60px;
-  
+
 }
 
 
-.admin-dashboard-grid-item-desc{
+.admin-dashboard-grid-item-desc {
   background-color: #333;
   color: white;
   padding: 10px;
@@ -507,22 +511,22 @@ p {
   position: relative;
 }
 
-.admin-dashboard-grid-item-img img{
+.admin-dashboard-grid-item-img img {
   width: 300px;
   height: 300px;
 }
 
-.admin-dashboard-grid-item-categories{
+.admin-dashboard-grid-item-categories {
   margin-top: 120px;
   text-align: center;
 }
 
-.admin-dashboard-grid-item-info{
+.admin-dashboard-grid-item-info {
   width: 100%;
   align-items: center;
 }
 
-.admin-dashboard-grid-item-imdb{
+.admin-dashboard-grid-item-imdb {
   bottom: 0;
 }
 
@@ -539,6 +543,7 @@ p {
 .admin-dashboard-grid-item-buttons-left {
   margin-left: 80px;
 }
+
 .admin-dashboard-grid-item-buttons-right {
   margin-right: 80px;
 }
@@ -661,6 +666,10 @@ p {
 
 .attributes {
   margin-bottom: 20px;
+}
+
+.profile-text {
+  color: white;
 }
 
 .attributes input,
