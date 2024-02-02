@@ -145,7 +145,85 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
         </div>
     </div>
-    <div class="admin-panel">
+    <div class="admin-dashboard-container">
+        <div class="admin-dashboard-content">
+            <div class="admin-dashboard-header">
+                <div class="admin-dashboard-header-title">
+                    <h2>Movies</h2>
+                </div>
+                <div class="admin-dashboard-header-button">
+                    <div class="attributes">
+                        <button id="addMovieButton">Add</button>
+                        <div id="addMovieForm" class="modal">
+                            <div class="modal-content">
+                                <span class="close" onclick="closeAddModal()">&times;</span>
+                                <h2 class="white-header-2">Add New Movie</h2>
+                                <form action="admin-dashboard.php" method="post" enctype="multipart/form-data">
+                                    <input type="hidden" name="action" value="create">
+                                    <input type="text" name="title" placeholder="Title">
+                                    <textarea name="description" placeholder="Description"></textarea>
+                                    <input  type="text" name="category" placeholder="Category">
+                                    <input type="file" name="image" accept="image/*">
+                                    <input type="text" name="imdb_link" placeholder="IMDB Link">
+                                    <button type="submit" name="add_movie">Add Movie</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="admin-dashboard-grid">
+            <?php if($movies){
+        foreach ($movies as $movie) {
+           
+            // Display each movie
+        echo "<div class=\"admin-dashboard-grid-item\">";
+        echo "<div class=\"admin-dashboard-grid-item-title\">";
+        echo "<h2>{$movie['title']}</h2>";
+        echo "</div>";
+        echo "<div class=\"admin-dashboard-grid-item-img\">";
+        echo "<img src='{$movie['img']}' alt='Movie Image'>";
+        echo "<div class=\"admin-dashboard-grid-item-desc\">";
+        echo "<p>{$movie['description']}</p>";
+        echo "<div class=\"admin-dashboard-grid-item-imdb\">";
+        echo "<a href=\"{$movie['imdb_link']}\" target=\"_blank\">IMBD link</a>";
+        echo "</div>";
+        echo "</div>";
+        echo "</div>";
+        echo "<div class=\"admin-dashboard-grid-item-categories\">";
+        echo "<p>Category: {$movie['category']}</p>";
+        echo "</div>";
+        echo "<div class=\"admin-dashboard-grid-item-buttons\">";
+        echo "<div class=\"admin-dashboard-grid-item-buttons-left\">";
+        $escapedDescription = addslashes($movie['description']);
+        echo "<form action='admin-dashboard.php' method='post'>";
+        echo "<input type='hidden' name='id' value='{$movie['id']}'>"; // Movie ID input field
+        echo "<button  type='button' onclick=\"openModal({$movie['id']}, '{$movie['title']}', '{$escapedDescription}', '{$movie['category']}', '{$movie['img']}', '{$movie['imdb_link']}')\" name=\"edit_movie\">Edit</button>";
+        echo "</form>";
+        echo "</div>";
+        echo "<div class=\"admin-dashboard-grid-item-buttons-right\">";
+        echo "<form action='admin-dashboard.php' method='post'>";
+        echo "<input type='hidden' name='action' value='delete'>"; // Action to identify delete operation
+        echo "<input type='hidden' name='id' value='{$movie['id']}'>"; // Movie ID input field
+       
+        echo "<button type='submit' name='delete_movie'>Delete</button>";
+        echo "</form>";
+        echo "</div>";
+        echo "</div>";
+        echo "</div>";
+
+        // Form to delete the movie
+        // Form to edit the movie
+    }
+}
+ else {
+    echo "No movies found.";
+    } ?>
+            </div>
+        </div>
+    </div>
+
+    <!-- <div class="admin-panel">
         <h2>Add New Movie</h2>
         <div class="attributes">
     
@@ -178,37 +256,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
     
 ?>
-    <?php if($movies){
-        foreach ($movies as $movie) {
-           
-            // Display each movie
-        echo "<div>";
-        echo "<img src='{$movie['img']}' alt='Movie Image'>";
-        echo "<h2>{$movie['title']}</h2>";
-        echo "<p>{$movie['description']}</p>";
-        echo "<p>Category: {$movie['category']}</p>";
-        echo "<a href=\"{$movie['imdb_link']}\" target=\"_blank\">IMBD link</a>";
-        // Display additional movie details as needed
-        echo "</div>";
-
-        // Form to delete the movie
-        echo "<form action='admin-dashboard.php' method='post'>";
-        echo "<input type='hidden' name='action' value='delete'>"; // Action to identify delete operation
-        echo "<input type='hidden' name='id' value='{$movie['id']}'>"; // Movie ID input field
-       
-        echo "<button type='submit' name='delete_movie'>Delete</button>";
-        echo "</form>";
-        $escapedDescription = addslashes($movie['description']);
-        // Form to edit the movie
-        echo "<form action='admin-dashboard.php' method='post'>";
-        echo "<input type='hidden' name='id' value='{$movie['id']}'>"; // Movie ID input field
-        echo "<button  type='button' onclick=\"openModal({$movie['id']}, '{$movie['title']}', '{$escapedDescription}', '{$movie['category']}', '{$movie['img']}', '{$movie['imdb_link']}')\" name=\"edit_movie\">Edit</button>";
-        echo "</form>";
-    }
-}
- else {
-    echo "No movies found.";
-    } ?>
+    
 
         
 </div>
@@ -227,7 +275,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       <input type="text" id="editImdbLink" name="imdb_link" placeholder="IMDB Link">
       <button type="submit" name="edit_movie_submit">Update Movie</button>
     </form>
-  </div>
+  </div> -->
 </div>
 <script>
   function openModal(id, title, description, category, img, imdbLink) {

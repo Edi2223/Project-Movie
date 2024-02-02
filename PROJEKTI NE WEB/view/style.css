@@ -434,6 +434,37 @@ p {
   color: white;
 }
 
+.admin-dashboard-container {
+  background-color: slategray;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.admin-dashboard-content {
+  margin: 100px 0 0 0;
+  width: 80%;
+  
+}
+
+.admin-dashboard-header{
+  display: flex;
+  justify-content: space-between;
+}
+
+.admin-dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 columns with equal width */
+  gap: 10px; /* 10px gap between items */
+}
+
+.admin-dashboard-grid-item-img img{
+  width: 200px;
+}
+
 @media only screen and (max-width: 1040px) {
   .navbar-container {
     padding: 0 30px;

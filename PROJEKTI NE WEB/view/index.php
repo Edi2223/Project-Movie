@@ -1,10 +1,42 @@
 <?php
     require_once '../models/db.php'; // Include your DB class
     require_once '../models/user.php'; // Include your User class
+    require_once '../controllers/movie_controller.php';
     
     session_start();
     $role = "user";     
     $isLoggedIn = false;
+
+    $movieController = new MovieController();
+
+    $allMovies = $movieController->getAllMovies();
+    $comedyMovies = array_filter($allMovies, function($movie) {
+        return strpos($movie['category'], 'comedy') !== false;
+    });
+    $actionMovies = array_filter($allMovies, function($movie) {
+        return strpos($movie['category'], 'action') !== false;
+    });
+    $horrorMovies = array_filter($allMovies, function($movie) {
+        return strpos($movie['category'], 'horror') !== false;
+    });
+    $fantasyMovies = array_filter($allMovies, function($movie) {
+        return strpos($movie['category'], 'fantasy') !== false;
+    });
+    $dramaMovies = array_filter($allMovies, function($movie) {
+        return strpos($movie['category'], 'drama') !== false;
+    });
+    $sciFiMovies = array_filter($allMovies, function($movie) {
+        return strpos($movie['category'], 'sci-fi') !== false;
+    });
+    $romanceMovies = array_filter($allMovies, function($movie) {
+        return strpos($movie['category'], 'romance') !== false;
+    });
+    $thrillerMovies = array_filter($allMovies, function($movie) {
+        return strpos($movie['category'], 'thriller') !== false;
+    });
+    $animationMovies = array_filter($allMovies, function($movie) {
+        return strpos($movie['category'], 'animation') !== false;
+    });
 
     // Check if the user is authenticated (logged in)
     if (isset($_SESSION['user_id']) && isset($_SESSION['user_email'])) {
@@ -110,115 +142,39 @@
                 <button class="featured-button">WATCH</button>
             </div>
             <div class="movie-list-container">
-                <h1 class="movie-list-title">NEW RELEASES</h1>
+            <h1 class="movie-list-title">Action</h1>
                 <div class="movie-list-wrapper">
                     <div class="movie-list">
-                        <div class="movie-list-item">
-                            <img class="movie-list-item-img" src="img/1.jpeg" alt="">
-                            <span class="movie-list-item-title">Her</span>
-                            <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. At
-                                hic fugit similique accusantium.</p>
-                            <button class="movie-list-item-button">Watch</button>
-                        </div>
-                        <div class="movie-list-item">
-                            <img class="movie-list-item-img" src="img/2.jpeg" alt="">
-                            <span class="movie-list-item-title">Star Wars</span>
-                            <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. At
-                                hic fugit similique accusantium.</p>
-                            <button class="movie-list-item-button">Watch</button>
-                        </div>
-                        <div class="movie-list-item">
-                            <img class="movie-list-item-img" src="img/3.jpg" alt="">
-                            <span class="movie-list-item-title">Storm</span>
-                            <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. At
-                                hic fugit similique accusantium.</p>
-                            <button class="movie-list-item-button">Watch</button>
-                        </div>
-                        <div class="movie-list-item">
-                            <img class="movie-list-item-img" src="img/4.jpg" alt="">
-                            <span class="movie-list-item-title">1917</span>
-                            <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. At
-                                hic fugit similique accusantium.</p>
-                            <button class="movie-list-item-button">Watch</button>
-                        </div>
-                        <div class="movie-list-item">
-                            <img class="movie-list-item-img" src="img/5.jpg" alt="">
-                            <span class="movie-list-item-title">Avengers</span>
-                            <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. At
-                                hic fugit similique accusantium.</p>
-                            <button class="movie-list-item-button">Watch</button>
-                        </div>
-                        <div class="movie-list-item">
-                            <img class="movie-list-item-img" src="img/6.jpg" alt="">
-                            <span class="movie-list-item-title">Her</span>
-                            <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. At
-                                hic fugit similique accusantium.</p>
-                            <button class="movie-list-item-button">Watch</button>
-                        </div>
-                        <div class="movie-list-item">
-                            <img class="movie-list-item-img" src="img/7.jpg" alt="">
-                            <span class="movie-list-item-title">Her</span>
-                            <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. At
-                                hic fugit similique accusantium.</p>
-                            <button class="movie-list-item-button">Watch</button>
-                        </div>
+                    <?php
+                            foreach ($actionMovies as $movie) {
+                                echo "<div class='movie-list-item'>";
+                                echo "<img class='movie-list-item-img' src='{$movie['img']}' alt='{$movie['title']}'>";
+                                echo "<span class='movie-list-item-title'>{$movie['title']}</span>";
+                                echo "<p class='movie-list-item-desc'>{$movie['description']}</p>";
+                                echo "<button class='movie-list-item-button'>Watch</button>";
+                                echo "</div>";
+                            }
+                        ?>
                     </div>
+                    <i class="fas fa-chevron-right arrow"></i>
                 </div>
             </div>
             <div class="movie-list-container">
-                <h1 class="movie-list-title">NEW RELEASES</h1>
+            <h1 class="movie-list-title">Comedy</h1>
                 <div class="movie-list-wrapper">
                     <div class="movie-list">
-                        <div class="movie-list-item">
-                            <img class="movie-list-item-img" src="img/8.jpg" alt="">
-                            <span class="movie-list-item-title">Her</span>
-                            <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. At
-                                hic fugit similique accusantium.</p>
-                            <button class="movie-list-item-button">Watch</button>
-                        </div>
-                        <div class="movie-list-item">
-                            <img class="movie-list-item-img" src="img/9.jpg" alt="">
-                            <span class="movie-list-item-title">Her</span>
-                            <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. At
-                                hic fugit similique accusantium.</p>
-                            <button class="movie-list-item-button">Watch</button>
-                        </div>
-                        <div class="movie-list-item">
-                            <img class="movie-list-item-img" src="img/10.jpg" alt="">
-                            <span class="movie-list-item-title">Her</span>
-                            <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. At
-                                hic fugit similique accusantium.</p>
-                            <button class="movie-list-item-button">Watch</button>
-                        </div>
-                        <div class="movie-list-item">
-                            <img class="movie-list-item-img" src="img/11.jpg" alt="">
-                            <span class="movie-list-item-title">Her</span>
-                            <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. At
-                                hic fugit similique accusantium.</p>
-                            <button class="movie-list-item-button">Watch</button>
-                        </div>
-                        <div class="movie-list-item">
-                            <img class="movie-list-item-img" src="img/12.jpg" alt="">
-                            <span class="movie-list-item-title">Her</span>
-                            <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. At
-                                hic fugit similique accusantium.</p>
-                            <button class="movie-list-item-button">Watch</button>
-                        </div>
-                        <div class="movie-list-item">
-                            <img class="movie-list-item-img" src="img/1.jpeg" alt="">
-                            <span class="movie-list-item-title">Her</span>
-                            <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. At
-                                hic fugit similique accusantium.</p>
-                            <button class="movie-list-item-button">Watch</button>
-                        </div>
-                        <div class="movie-list-item">
-                            <img class="movie-list-item-img" src="img/1.jpeg" alt="">
-                            <span class="movie-list-item-title">Her</span>
-                            <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. At
-                                hic fugit similique accusantium.</p>
-                            <button class="movie-list-item-button">Watch</button>
-                        </div>
+                        <?php
+                            foreach ($comedyMovies as $movie) {
+                                echo "<div class='movie-list-item'>";
+                                echo "<img class='movie-list-item-img' src='{$movie['img']}' alt='{$movie['title']}'>";
+                                echo "<span class='movie-list-item-title'>{$movie['title']}</span>";
+                                echo "<p class='movie-list-item-desc'>{$movie['description']}</p>";
+                                echo "<button class='movie-list-item-button'>Watch</button>";
+                                echo "</div>";
+                            }
+                        ?>
                     </div>
+                    <i class="fas fa-chevron-right arrow"></i>
                 </div>
             </div>
             <div class="featured-content"
@@ -230,115 +186,129 @@
                 <button class="featured-button">WATCH</button>
             </div>
             <div class="movie-list-container">
-                <h1 class="movie-list-title">NEW RELEASES</h1>
+            <h1 class="movie-list-title">Horror</h1>
                 <div class="movie-list-wrapper">
-                    <div class="movie-list">
-                        <div class="movie-list-item">
-                            <img class="movie-list-item-img" src="img/1.jpeg" alt="">
-                            <span class="movie-list-item-title">Her</span>
-                            <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. At
-                                hic fugit similique accusantium.</p>
-                            <button class="movie-list-item-button">Watch</button>
-                        </div>
-                        <div class="movie-list-item">
-                            <img class="movie-list-item-img" src="img/2.jpeg" alt="">
-                            <span class="movie-list-item-title">Her</span>
-                            <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. At
-                                hic fugit similique accusantium.</p>
-                            <button class="movie-list-item-button">Watch</button>
-                        </div>
-                        <div class="movie-list-item">
-                            <img class="movie-list-item-img" src="img/15.jpg" alt="">
-                            <span class="movie-list-item-title">Her</span>
-                            <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. At
-                                hic fugit similique accusantium.</p>
-                            <button class="movie-list-item-button">Watch</button>
-                        </div>
-                        <div class="movie-list-item">
-                            <img class="movie-list-item-img" src="img/3.jpg" alt="">
-                            <span class="movie-list-item-title">Her</span>
-                            <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. At
-                                hic fugit similique accusantium.</p>
-                            <button class="movie-list-item-button">Watch</button>
-                        </div>
-                        <div class="movie-list-item">
-                            <img class="movie-list-item-img" src="img/4.jpg" alt="">
-                            <span class="movie-list-item-title">Her</span>
-                            <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. At
-                                hic fugit similique accusantium.</p>
-                            <button class="movie-list-item-button">Watch</button>
-                        </div>
-                        <div class="movie-list-item">
-                            <img class="movie-list-item-img" src="img/5.jpg" alt="">
-                            <span class="movie-list-item-title">Her</span>
-                            <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. At
-                                hic fugit similique accusantium.</p>
-                            <button class="movie-list-item-button">Watch</button>
-                        </div>
-                        <div class="movie-list-item">
-                            <img class="movie-list-item-img" src="img/1.jpeg" alt="">
-                            <span class="movie-list-item-title">Her</span>
-                            <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. At
-                                hic fugit similique accusantium.</p>
-                            <button class="movie-list-item-button">Watch</button>
-                        </div>
+                <div class="movie-list">
+                <?php
+                            foreach ($horrorMovies as $movie) {
+                                echo "<div class='movie-list-item'>";
+                                echo "<img class='movie-list-item-img' src='{$movie['img']}' alt='{$movie['title']}'>";
+                                echo "<span class='movie-list-item-title'>{$movie['title']}</span>";
+                                echo "<p class='movie-list-item-desc'>{$movie['description']}</p>";
+                                echo "<button class='movie-list-item-button'>Watch</button>";
+                                echo "</div>";
+                            }
+                        ?>
                     </div>
+                    <i class="fas fa-chevron-right arrow"></i>
                 </div>
             </div>
             <div class="movie-list-container">
-                <h1 class="movie-list-title">NEW RELEASES</h1>
+            <h1 class="movie-list-title">Fantasy</h1>
                 <div class="movie-list-wrapper">
-                    <div class="movie-list">
-                        <div class="movie-list-item">
-                            <img class="movie-list-item-img" src="img/17.jpg" alt="">
-                            <span class="movie-list-item-title">Her</span>
-                            <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. At
-                                hic fugit similique accusantium.</p>
-                            <button class="movie-list-item-button">Watch</button>
-                        </div>
-                        <div class="movie-list-item">
-                            <img class="movie-list-item-img" src="img/18.jpg" alt="">
-                            <span class="movie-list-item-title">Her</span>
-                            <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. At
-                                hic fugit similique accusantium.</p>
-                            <button class="movie-list-item-button">Watch</button>
-                        </div>
-                        <div class="movie-list-item">
-                            <img class="movie-list-item-img" src="img/19.jpg" alt="">
-                            <span class="movie-list-item-title">Her</span>
-                            <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. At
-                                hic fugit similique accusantium.</p>
-                            <button class="movie-list-item-button">Watch</button>
-                        </div>
-                        <div class="movie-list-item">
-                            <img class="movie-list-item-img" src="img/7.jpg" alt="">
-                            <span class="movie-list-item-title">Her</span>
-                            <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. At
-                                hic fugit similique accusantium.</p>
-                            <button class="movie-list-item-button">Watch</button>
-                        </div>
-                        <div class="movie-list-item">
-                            <img class="movie-list-item-img" src="img/1.jpeg" alt="">
-                            <span class="movie-list-item-title">Her</span>
-                            <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. At
-                                hic fugit similique accusantium.</p>
-                            <button class="movie-list-item-button">Watch</button>
-                        </div>
-                        <div class="movie-list-item">
-                            <img class="movie-list-item-img" src="img/1.jpeg" alt="">
-                            <span class="movie-list-item-title">Her</span>
-                            <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. At
-                                hic fugit similique accusantium.</p>
-                            <button class="movie-list-item-button">Watch</button>
-                        </div>
-                        <div class="movie-list-item">
-                            <img class="movie-list-item-img" src="img/1.jpeg" alt="">
-                            <span class="movie-list-item-title">Her</span>
-                            <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. At
-                                hic fugit similique accusantium.</p>
-                            <button class="movie-list-item-button">Watch</button>
-                        </div>
+                <div class="movie-list">
+                <?php
+                            foreach ($fantasyMovies as $movie) {
+                                echo "<div class='movie-list-item'>";
+                                echo "<img class='movie-list-item-img' src='{$movie['img']}' alt='{$movie['title']}'>";
+                                echo "<span class='movie-list-item-title'>{$movie['title']}</span>";
+                                echo "<p class='movie-list-item-desc'>{$movie['description']}</p>";
+                                echo "<button class='movie-list-item-button'>Watch</button>";
+                                echo "</div>";
+                            }
+                        ?>
                     </div>
+                    <i class="fas fa-chevron-right arrow"></i>
+                </div>
+            </div>
+            <div class="movie-list-container">
+            <h1 class="movie-list-title">Thriller</h1>
+                <div class="movie-list-wrapper">
+                <div class="movie-list">
+                <?php
+                            foreach ($thrillerMovies as $movie) {
+                                echo "<div class='movie-list-item'>";
+                                echo "<img class='movie-list-item-img' src='{$movie['img']}' alt='{$movie['title']}'>";
+                                echo "<span class='movie-list-item-title'>{$movie['title']}</span>";
+                                echo "<p class='movie-list-item-desc'>{$movie['description']}</p>";
+                                echo "<button class='movie-list-item-button'>Watch</button>";
+                                echo "</div>";
+                            }
+                        ?>
+                    </div>
+                    <i class="fas fa-chevron-right arrow"></i>
+                </div>
+            </div>
+            <div class="movie-list-container">
+            <h1 class="movie-list-title">Romance</h1>
+                <div class="movie-list-wrapper">
+                <div class="movie-list">
+                <?php
+                            foreach ($romanceMovies as $movie) {
+                                echo "<div class='movie-list-item'>";
+                                echo "<img class='movie-list-item-img' src='{$movie['img']}' alt='{$movie['title']}'>";
+                                echo "<span class='movie-list-item-title'>{$movie['title']}</span>";
+                                echo "<p class='movie-list-item-desc'>{$movie['description']}</p>";
+                                echo "<button class='movie-list-item-button'>Watch</button>";
+                                echo "</div>";
+                            }
+                        ?>
+                    </div>
+                    <i class="fas fa-chevron-right arrow"></i>
+                </div>
+            </div>
+            <div class="movie-list-container">
+            <h1 class="movie-list-title">Drama</h1>
+                <div class="movie-list-wrapper">
+                <div class="movie-list">
+                <?php
+                            foreach ($dramaMovies as $movie) {
+                                echo "<div class='movie-list-item'>";
+                                echo "<img class='movie-list-item-img' src='{$movie['img']}' alt='{$movie['title']}'>";
+                                echo "<span class='movie-list-item-title'>{$movie['title']}</span>";
+                                echo "<p class='movie-list-item-desc'>{$movie['description']}</p>";
+                                echo "<button class='movie-list-item-button'>Watch</button>";
+                                echo "</div>";
+                            }
+                        ?>
+                    </div>
+                    <i class="fas fa-chevron-right arrow"></i>
+                </div>
+            </div>
+            <div class="movie-list-container">
+            <h1 class="movie-list-title">Sci-Fi</h1>
+                <div class="movie-list-wrapper">
+                <div class="movie-list">
+                <?php
+                            foreach ($sciFiMovies as $movie) {
+                                echo "<div class='movie-list-item'>";
+                                echo "<img class='movie-list-item-img' src='{$movie['img']}' alt='{$movie['title']}'>";
+                                echo "<span class='movie-list-item-title'>{$movie['title']}</span>";
+                                echo "<p class='movie-list-item-desc'>{$movie['description']}</p>";
+                                echo "<button class='movie-list-item-button'>Watch</button>";
+                                echo "</div>";
+                            }
+                        ?>
+                    </div>
+                    <i class="fas fa-chevron-right arrow"></i>
+                </div>
+            </div>
+            <div class="movie-list-container">
+            <h1 class="movie-list-title">Animations</h1>
+                <div class="movie-list-wrapper">
+                <div class="movie-list">
+                <?php
+                            foreach ($animationMovies as $movie) {
+                                echo "<div class='movie-list-item'>";
+                                echo "<img class='movie-list-item-img' src='{$movie['img']}' alt='{$movie['title']}'>";
+                                echo "<span class='movie-list-item-title'>{$movie['title']}</span>";
+                                echo "<p class='movie-list-item-desc'>{$movie['description']}</p>";
+                                echo "<button class='movie-list-item-button'>Watch</button>";
+                                echo "</div>";
+                            }
+                        ?>
+                    </div>
+                    <i class="fas fa-chevron-right arrow"></i>
                 </div>
             </div>
         </div>
