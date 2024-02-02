@@ -91,8 +91,6 @@
                 <div class="menu-container">
                     <ul class="menu-list">
                         <li class="menu-list-item active"><a href="index.php">Home</a></li>
-                        <li class="menu-list-item"><a href="wip.php">Movies</a></li>
-                        <li class="menu-list-item"><a href="wip.php">Series</li>
                         <!-- <li class="menu-list-item"><a href="wip.php">Popular</li> -->
                         <!-- <li class="menu-list-item"><a href="wip.php">Trends</a></li> --> -->
                         <?php if ($role == "admin"): ?>

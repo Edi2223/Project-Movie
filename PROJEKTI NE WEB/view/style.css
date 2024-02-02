@@ -197,8 +197,8 @@ a {
 }
 
 .movie-list-item:hover .movie-list-item-img {
-  transform: scale(1.2);
-  margin: 0 30px;
+  transform: scale(1.1);
+  /* margin: 0 30px; */
   opacity: 0.5;
 }
 
@@ -216,7 +216,7 @@ a {
   border-radius: 20px;
 }
 
-.movie-list-title {
+.movie-list-title  {
   color: #49aa09;
 }
 
@@ -226,12 +226,15 @@ a {
   font-size: 32px;
   font-weight: bold;
   position: absolute;
-  top: 10%;
+  top: 0;
   left: 50px;
   opacity: 0;
   transition: 1s all ease-in-out;
 }
 
+.movie-list-item-title h2{
+  color:white;
+}
 .movie-list-item-desc {
   background-color: #333;
   color: white;
@@ -243,6 +246,11 @@ a {
   width: 230px;
   opacity: 0;
   transition: 1s all ease-in-out;
+}
+.movie-list-item-desc p{
+  color: white;
+  font-size: 14px;
+
 }
 
 .movie-list-item-button {
@@ -435,7 +443,9 @@ p {
 }
 
 .admin-dashboard-container {
-  background-color: slategray;
+  background-color: #151515;
+  min-height: calc(100vh - 50px);
+  color: white;
   margin: 0;
   padding: 0;
   width: 100%;
@@ -455,14 +465,82 @@ p {
   justify-content: space-between;
 }
 
+.admin-dashboard-header-title h2{
+  color: white ;
+}
+
 .admin-dashboard-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr); /* 3 columns with equal width */
   gap: 10px; /* 10px gap between items */
 }
 
+.admin-dashboard-grid-item {
+  width: 100%;
+  margin: 60px;
+  
+}
+
+
+.admin-dashboard-grid-item-desc{
+  background-color: #333;
+  color: white;
+  padding: 10px;
+  font-size: 14px;
+  position: absolute;
+  top: 30%;
+  left: 50px;
+  width: 230px;
+  opacity: 0;
+  transition: 1s all ease-in-out;
+}
+
+.admin-dashboard-grid-item:hover .admin-dashboard-grid-item-img,
+.admin-dashboard-grid-item:hover .admin-dashboard-grid-item-imdb {
+  opacity: 1;
+}
+
+.admin-dashboard-grid-item-img {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
 .admin-dashboard-grid-item-img img{
-  width: 200px;
+  width: 300px;
+  height: 300px;
+}
+
+.admin-dashboard-grid-item-categories{
+  margin-top: 120px;
+  text-align: center;
+}
+
+.admin-dashboard-grid-item-info{
+  width: 100%;
+  align-items: center;
+}
+
+.admin-dashboard-grid-item-imdb{
+  bottom: 0;
+}
+
+.admin-dashboard-grid-item-categories p {
+  color: white;
+}
+
+.admin-dashboard-grid-item-buttons {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.admin-dashboard-grid-item-buttons-left {
+  margin-left: 80px;
+}
+.admin-dashboard-grid-item-buttons-right {
+  margin-right: 80px;
 }
 
 @media only screen and (max-width: 1040px) {

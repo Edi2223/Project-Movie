@@ -115,10 +115,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="menu-container">
                 <ul class="menu-list">
                     <li class="menu-list-item active"><a href="index.php">Home</a></li>
-                    <li class="menu-list-item"><a href="wip.php">Movies</a></li>
-                    <li class="menu-list-item"><a href="wip.php">Series</li>
-                    <li class="menu-list-item"><a href="wip.php">Popular</li>
-                    <li class="menu-list-item"><a href="wip.php">Trends</a></li>
                     <?php if ($role == "admin"): ?>
                         <li class="menu-list-item"><a href="admin-dashboard.php">Admin Dashboard</a></li>
                     <?php endif; ?>
@@ -177,19 +173,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         foreach ($movies as $movie) {
            
             // Display each movie
-        echo "<div class=\"admin-dashboard-grid-item\">";
-        echo "<div class=\"admin-dashboard-grid-item-title\">";
+        echo "<div class=\"movie-list-item admin-dashboard-grid-item\">";
+        echo "<div class=\"movie-list-item-img admin-dashboard-grid-item-img\">";
+        echo "<img src='{$movie['img']}' alt='Movie Image'>";
+        echo "<div class=\"movie-list-item-title\">";
         echo "<h2>{$movie['title']}</h2>";
         echo "</div>";
-        echo "<div class=\"admin-dashboard-grid-item-img\">";
-        echo "<img src='{$movie['img']}' alt='Movie Image'>";
-        echo "<div class=\"admin-dashboard-grid-item-desc\">";
+        echo "<div class=\"movie-list-item-desc\">";
         echo "<p>{$movie['description']}</p>";
-        echo "<div class=\"admin-dashboard-grid-item-imdb\">";
+        echo "<div class=\"movie-list-item-button admin-dashboard-grid-item-imdb\">";
         echo "<a href=\"{$movie['imdb_link']}\" target=\"_blank\">IMBD link</a>";
         echo "</div>";
         echo "</div>";
         echo "</div>";
+
+        echo "<div class=\"admin-dashboard-grid-item-info\">";
         echo "<div class=\"admin-dashboard-grid-item-categories\">";
         echo "<p>Category: {$movie['category']}</p>";
         echo "</div>";
@@ -197,7 +195,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         echo "<div class=\"admin-dashboard-grid-item-buttons-left\">";
         $escapedDescription = addslashes($movie['description']);
         echo "<form action='admin-dashboard.php' method='post'>";
-        echo "<input type='hidden' name='id' value='{$movie['id']}'>"; // Movie ID input field
+        echo "<input type='hidden' name='id' value=\"{$movie['id']}\">";
         echo "<button  type='button' onclick=\"openModal({$movie['id']}, '{$movie['title']}', '{$escapedDescription}', '{$movie['category']}', '{$movie['img']}', '{$movie['imdb_link']}')\" name=\"edit_movie\">Edit</button>";
         echo "</form>";
         echo "</div>";
@@ -210,6 +208,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         echo "</form>";
         echo "</div>";
         echo "</div>";
+        
+        echo "</div>";
+
         echo "</div>";
 
         // Form to delete the movie
@@ -260,7 +261,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         
 </div>
-    
+-->
 <div id="editModal" class="modal">
   <div class="modal-content">
     <span class="close" onclick="closeEditModal()">&times;</span>
@@ -275,11 +276,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       <input type="text" id="editImdbLink" name="imdb_link" placeholder="IMDB Link">
       <button type="submit" name="edit_movie_submit">Update Movie</button>
     </form>
-  </div> -->
+  </div>
 </div>
 <script>
   function openModal(id, title, description, category, img, imdbLink) {
-      console.log("function is working");
     document.getElementById('editId').value = id;
     document.getElementById('editTitle').value = title;
     document.getElementById('editDescription').value = description;
