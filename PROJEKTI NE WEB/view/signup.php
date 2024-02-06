@@ -30,22 +30,33 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <title>Sign Up</title>
 </head>
-<body>
+<style>
+body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+</style>
+        <body>
     <!-- <h2>Sign Up</h2> -->
-    <?php if (isset($error)): ?>
-        <p style="color: red;"><?php echo $error; ?></p>
-    <?php endif; ?>
    
-   <div class="signup-form">
-    <form action="signup.php" method="POST">
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required><br><br>
+<div class="signup-body">
+    <div class="form">
+        <form class="signup-form " action="signup.php" method="POST">
+        <input type="email" id="email" name="email"  placeholder="username"required><br><br>
         
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required><br><br>
+        <input type="password" id="password" name="password" placeholder="password" required><br><br>
         
-        <button type="submit">Sign Up</button>
-        </div>
-    </form>
-   <div class="login-button"> <p>Already have an account? <button><a href="login.php">Log in here</p></a></button></div>
+        <button class="signup-button" type="submit">Sign Up</button>
+        <p class="message">Already have an account? <a href="login.php">Log in here</a></p>
+    
+        </form>
+    </div>
+</div>
+</body>
    </html>

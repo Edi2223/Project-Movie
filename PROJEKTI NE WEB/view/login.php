@@ -35,24 +35,44 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&family=Sen:wght@400;700;800&display=swap"  rel="stylesheet">
 </head>
-<body>
+<style>
+body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+      
+</style>
+        <body>
 
     <!-- <h2>Login</h2> -->
-    <?php if (isset($error)): ?>
-        <p style="color: red;"><?php echo $error; ?></p>
-    <?php endif; ?>
-<div class="login-form">
-    <form action="login.php" method="POST">
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required><br><br>
+   
+<div class="login-body">
+    <div class="form">
+        <form class="login-form" action="login.php" method="POST">
         
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required><br><br>
+        <?php if (isset($error)): ?>
+                    <p style="color: red" class="error-message"><?php echo $error; ?></p>
+        <?php endif; ?>
+           
+        <!-- <label for="email">Email:</label> -->
         
-        <button type="submit">Login</button>
-    </form>
+            <input type="email" id="email" placeholder="username" name="email" required><br><br>
+            
+            <!-- <label for="password">Password:</label> -->
+            <input type="password" id="password" name="password" placeholder="password" required><br><br>
+            
+            <button class="login-button" type="submit">Login</button>
+        
+            <p class="message">Not registered? <a href="signup.php">       Register Now</a></p>
+    
+        </form>
     </div>
-
-    <div class="register-button"><p>Do not have an account? <button><a href="signup.php">Register Now</a></button></p></div>
+</div>
 </body>
 </html>
