@@ -41,10 +41,10 @@
     // Check if the user is authenticated (logged in)
     if (isset($_SESSION['user_id']) && isset($_SESSION['user_email'])) {
         $userEmail = $_SESSION['user_email'];
-        $isLoggedIn = true; // User is logged in
+        $isLoggedIn = true;
         $role = $_SESSION['user_role'];
     } else {
-        $isLoggedIn = false; // User is not logged in
+        $isLoggedIn = false;
         $userEmail = "Profile";
     }
     
@@ -119,15 +119,6 @@
             </div>
         </div>
     </div>
-    <!-- <div class="sidebar">
-        <a href="wip.html"><i class="left-menu-icon fas fa-search"></i></a>
-        <a href="wip.html"><i class="left-menu-icon fas fa-home"></i></a>
-        <a href="wip.html"><i class="left-menu-icon fas fa-users"></i></a>
-        <a href="wip.html"><i class="left-menu-icon fas fa-bookmark"></i></a>
-        <a href="wip.html"><i class="left-menu-icon fas fa-tv"></i></a>
-        <a href="wip.html"><i class="left-menu-icon fas fa-hourglass-start"></i></a>
-        <a href="wip.html"><i class="left-menu-icon fas fa-shopping-cart"></i></a>
-    </div> -->
     <div class="container">
         <div class="content-container">
             <div class="featured-content"
@@ -147,7 +138,7 @@
                                 echo "<img class='movie-list-item-img' src='{$movie['img']}' alt='{$movie['title']}'>";
                                 echo "<span class='movie-list-item-title'>{$movie['title']}</span>";
                                 echo "<p class='movie-list-item-desc'>{$movie['description']}</p>";
-                                echo "<button class='movie-list-item-button'>Watch</button>";
+                                echo "<button class='movie-list-item-button'><a href=\"{$movie['imdb_link']}\" target=\"_blank\">Watch</a></button>";
                                 echo "</div>";
                             }
                         ?>
@@ -165,7 +156,7 @@
                                 echo "<img class='movie-list-item-img' src='{$movie['img']}' alt='{$movie['title']}'>";
                                 echo "<span class='movie-list-item-title'>{$movie['title']}</span>";
                                 echo "<p class='movie-list-item-desc'>{$movie['description']}</p>";
-                                echo "<button class='movie-list-item-button'>Watch</button>";
+                                echo "<button class='movie-list-item-button'><a href=\"{$movie['imdb_link']}\" target=\"_blank\">Watch</a></button>";
                                 echo "</div>";
                             }
                         ?>
@@ -191,7 +182,7 @@
                                 echo "<img class='movie-list-item-img' src='{$movie['img']}' alt='{$movie['title']}'>";
                                 echo "<span class='movie-list-item-title'>{$movie['title']}</span>";
                                 echo "<p class='movie-list-item-desc'>{$movie['description']}</p>";
-                                echo "<button class='movie-list-item-button'>Watch</button>";
+                                echo "<button class='movie-list-item-button'><a href=\"{$movie['imdb_link']}\" target=\"_blank\">Watch</a></button>";
                                 echo "</div>";
                             }
                         ?>
@@ -209,7 +200,7 @@
                                 echo "<img class='movie-list-item-img' src='{$movie['img']}' alt='{$movie['title']}'>";
                                 echo "<span class='movie-list-item-title'>{$movie['title']}</span>";
                                 echo "<p class='movie-list-item-desc'>{$movie['description']}</p>";
-                                echo "<button class='movie-list-item-button'>Watch</button>";
+                                echo "<button class='movie-list-item-button'><a href=\"{$movie['imdb_link']}\" target=\"_blank\">Watch</a></button>";
                                 echo "</div>";
                             }
                         ?>
@@ -227,7 +218,7 @@
                                 echo "<img class='movie-list-item-img' src='{$movie['img']}' alt='{$movie['title']}'>";
                                 echo "<span class='movie-list-item-title'>{$movie['title']}</span>";
                                 echo "<p class='movie-list-item-desc'>{$movie['description']}</p>";
-                                echo "<button class='movie-list-item-button'>Watch</button>";
+                                echo "<button class='movie-list-item-button'><a href=\"{$movie['imdb_link']}\" target=\"_blank\">Watch</a></button>";
                                 echo "</div>";
                             }
                         ?>
@@ -245,7 +236,7 @@
                                 echo "<img class='movie-list-item-img' src='{$movie['img']}' alt='{$movie['title']}'>";
                                 echo "<span class='movie-list-item-title'>{$movie['title']}</span>";
                                 echo "<p class='movie-list-item-desc'>{$movie['description']}</p>";
-                                echo "<button class='movie-list-item-button'>Watch</button>";
+                                echo "<button class='movie-list-item-button'><a href=\"{$movie['imdb_link']}\" target=\"_blank\">Watch</a></button>";
                                 echo "</div>";
                             }
                         ?>
@@ -263,7 +254,7 @@
                                 echo "<img class='movie-list-item-img' src='{$movie['img']}' alt='{$movie['title']}'>";
                                 echo "<span class='movie-list-item-title'>{$movie['title']}</span>";
                                 echo "<p class='movie-list-item-desc'>{$movie['description']}</p>";
-                                echo "<button class='movie-list-item-button'>Watch</button>";
+                                echo "<button class='movie-list-item-button'><a href=\"{$movie['imdb_link']}\" target=\"_blank\">Watch</a></button>";
                                 echo "</div>";
                             }
                         ?>
@@ -281,7 +272,7 @@
                                 echo "<img class='movie-list-item-img' src='{$movie['img']}' alt='{$movie['title']}'>";
                                 echo "<span class='movie-list-item-title'>{$movie['title']}</span>";
                                 echo "<p class='movie-list-item-desc'>{$movie['description']}</p>";
-                                echo "<button class='movie-list-item-button'>Watch</button>";
+                                echo "<button class='movie-list-item-button'><a href=\"{$movie['imdb_link']}\" target=\"_blank\">Watch</a></button>";
                                 echo "</div>";
                             }
                         ?>
@@ -299,7 +290,7 @@
                                 echo "<img class='movie-list-item-img' src='{$movie['img']}' alt='{$movie['title']}'>";
                                 echo "<span class='movie-list-item-title'>{$movie['title']}</span>";
                                 echo "<p class='movie-list-item-desc'>{$movie['description']}</p>";
-                                echo "<button class='movie-list-item-button'>Watch</button>";
+                                echo "<button class='movie-list-item-button'><a href=\"{$movie['imdb_link']}\" target=\"_blank\">Watch</a></button>";   
                                 echo "</div>";
                             }
                         ?>
